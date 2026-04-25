@@ -15,6 +15,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description="Run Korean to Vietnamese translation with NLLB.")
     parser.add_argument("--input", default="data/notice_sample_v3.csv")
     parser.add_argument("--output", default="outputs/translation/nllb_predictions.csv")
+    parser.add_argument("--glossary", default="translation/term_glossary.csv")
     parser.add_argument("--text-column", default="easy_korean", choices=["easy_korean", "original_text"])
     parser.add_argument("--limit", type=int, default=20)
     parser.add_argument("--device", default="cpu", choices=["cpu", "cuda"])
@@ -34,12 +35,14 @@ def main():
     model.eval()
 
     rows = read_rows(Path(args.input), args.limit)
+    glossary = read_glossary(Path(args.glossary))
     target_lang_id = tokenizer.convert_tokens_to_ids(TARGET_LANG)
     output_rows = []
 
     for row in tqdm(rows, desc="Translating"):
         source_text = row[args.text_column].strip()
         prediction = translate_one(source_text, tokenizer, model, target_lang_id, device, args.max_length)
+        glossary_hits = find_glossary_hits(source_text, glossary)
         output_rows.append({
             "id": row["id"],
             "source_type": row["source_type"],
@@ -47,6 +50,9 @@ def main():
             "source_text": source_text,
             "reference_vi": row.get("vietnamese", ""),
             "prediction_vi": prediction,
+            "glossary_hits": "; ".join(
+                f"{item['korean']}->{item['preferred_vi']}" for item in glossary_hits
+            ),
         })
 
     write_rows(Path(args.output), output_rows)
@@ -57,6 +63,20 @@ def read_rows(path, limit):
     with path.open("r", encoding="utf-8-sig", newline="") as file:
         rows = list(csv.DictReader(file))
     return rows[:limit] if limit > 0 else rows
+
+
+def read_glossary(path):
+    with path.open("r", encoding="utf-8-sig", newline="") as file:
+        rows = list(csv.DictReader(file))
+    return [
+        row
+        for row in rows
+        if row.get("korean", "").strip() and row.get("preferred_vi", "").strip()
+    ]
+
+
+def find_glossary_hits(source_text, glossary):
+    return [row for row in glossary if row["korean"] in source_text]
 
 
 def translate_one(source_text, tokenizer, model, target_lang_id, device, max_length):
@@ -73,7 +93,15 @@ def translate_one(source_text, tokenizer, model, target_lang_id, device, max_len
 
 def write_rows(path, rows):
     path.parent.mkdir(parents=True, exist_ok=True)
-    fieldnames = ["id", "source_type", "category", "source_text", "reference_vi", "prediction_vi"]
+    fieldnames = [
+        "id",
+        "source_type",
+        "category",
+        "source_text",
+        "reference_vi",
+        "prediction_vi",
+        "glossary_hits",
+    ]
     with path.open("w", encoding="utf-8", newline="") as file:
         writer = csv.DictWriter(file, fieldnames=fieldnames)
         writer.writeheader()
