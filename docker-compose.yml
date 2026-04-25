@@ -1,0 +1,10 @@
+services:
+  lab:
+    build: .
+    image: translation-tts-lab:py311
+    container_name: translation-tts-lab
+    working_dir: /lab
+    volumes:
+      - .:/lab
+    stdin_open: true
+    tty: true
