@@ -17,6 +17,12 @@
 -> 베트남어 TTS 음성 출력
 ```
 
+## 담당 파트 구조
+
+아래 이미지는 번역, 용어사전, 검수 루프, TTS가 어떻게 연결되는지 한 장으로 정리한 구조도입니다.
+
+![번역·용어사전·검수 루프·TTS 담당 파트 구조](docs/assets/team-part-translation-glossary-tts.png)
+
 ## 내일 전까지 확정할 것
 
 - 모델 실행 방식: Docker 기반 Python 파이프라인
