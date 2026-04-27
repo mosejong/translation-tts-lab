@@ -1,0 +1,127 @@
+1. KO: 가정통신문
+   VI: thông báo gửi phụ huynh
+   note: 기타
+
+2. KO: 알림장
+   VI: sổ liên lạc
+   note: 기타
+
+3. KO: 공지사항
+   VI: thông báo
+   note: 기타
+
+4. KO: 확인서
+   VI: giấy xác nhận
+   note: 제출
+
+5. KO: 안내문
+   VI: thông báo hướng dẫn
+   note: 기타
+
+6. KO: 회신
+   VI: phản hồi
+   note: 제출
+
+7. KO: 참가 여부
+   VI: có tham gia hay không
+   note: 제출
+
+8. KO: 불참
+   VI: không tham gia
+   note: 제출
+
+9. KO: 기한
+   VI: thời hạn
+   note: 일정
+
+10. KO: 마감일
+   VI: hạn chót
+   note: 일정
+
+11. KO: 돗자리
+   VI: thảm ngồi
+   note: 준비물
+
+12. KO: 색종이
+   VI: giấy màu
+   note: 준비물
+
+13. KO: 풀
+   VI: keo dán
+   note: 준비물
+
+14. KO: 가위
+   VI: kéo
+   note: 준비물
+
+15. KO: 크레파스
+   VI: bút sáp màu
+   note: 준비물
+
+16. KO: 네임펜
+   VI: bút lông dầu
+   note: 준비물
+
+17. KO: 교육비
+   VI: phí giáo dục
+   note: 비용
+
+18. KO: 체험학습비
+   VI: phí hoạt động trải nghiệm
+   note: 비용
+
+19. KO: 출석인정
+   VI: được công nhận có mặt
+   note: 기타
+
+20. KO: 출결
+   VI: chuyên cần
+   note: 기타
+
+21. KO: 교무실
+   VI: phòng giáo vụ
+   note: 기타
+
+22. KO: 공개수업
+   VI: tiết học mở
+   note: 일정
+
+23. KO: 학부모 총회
+   VI: họp toàn thể phụ huynh
+   note: 일정
+
+24. KO: 수련회
+   VI: trại sinh hoạt tập thể
+   note: 일정
+
+25. KO: 종업식
+   VI: lễ kết thúc năm học
+   note: 일정
+
+26. KO: 신체검사
+   VI: khám sức khỏe thể chất
+   note: 일정
+
+27. KO: 생활지도
+   VI: hướng dẫn nề nếp sinh hoạt
+   note: 건강·안전
+
+28. KO: 귀가 동의
+   VI: đồng ý cho ra về
+   note: 제출
+
+29. KO: 방과후 신청
+   VI: đăng ký lớp sau giờ học
+   note: 제출
+
+30. KO: 돌봄 신청
+   VI: đăng ký lớp chăm sóc sau giờ học
+   note: 제출
+
+31. KO: 학교종이
+   VI: School Bell
+   note: 앱 어플 확인완료
+
+32. KO: 준비 학습
+   VI: bài học chuẩn bị
+   note: 기타

@@ -1,0 +1,31 @@
+batch_no,id,source_type,category,easy_korean,original_text,current_vietnamese,review_reason,human_vi,review_status
+1,59,초등학교,제출,급식 대체식을 원하면 신청서를 보건실에 내 주세요,급식 알레르기 대체식 신청서는 보건실로 제출해 주세요,,"category:제출|terms:신청서,급식|keywords:신청|empty_vi","Nếu muốn có suất ăn thay thế, vui lòng nộp đơn đăng ký cho phòng y tế.",reviewed
+2,75,유치원,제출,하원 시간이 바뀌면 오후 1시 전까지 키즈노트로 알려 주세요,하원 시간이 변경되는 경우 오후 1시 전까지 키즈노트로 알려 주세요,Nếu giờ đón trẻ thay đổi vui lòng báo qua Kids Note trước 1 giờ chiều,"category:제출|terms:하원,키즈노트|keywords:까지,하원","Nếu thời gian về thay đổi, vui lòng thông báo qua Kids Note trước 1 giờ chiều.",reviewed
+3,82,초등학교,일정,3월 22일 오후 2시에 학부모 총회가 있습니다,1학기 학부모 총회는 3월 22일 금요일 오후 2시에 강당에서 열립니다,,"category:일정|terms:학부모 총회|keywords:월,일|empty_vi",Có một cuộc họp phụ huynh vào lúc 2 giờ chiều ngày 22 tháng 3.,reviewed
+4,94,유치원,건강·안전,등원할 때 아이 손을 잡고 현관까지 와 주세요,등원 시 아이 손을 잡고 현관까지 안전하게 동행해 주세요,,"category:건강·안전|terms:등원|keywords:까지,등원|empty_vi","Khi đến trường, vui lòng nắm tay trẻ và đưa đến tận cửa ra vào.",reviewed
+5,114,초등학교,비용,졸업앨범을 신청한 사람만 62000원을 냅니다,졸업앨범비 62000원은 신청자에 한해 납부합니다,,category:비용|keywords:신청|money|empty_vi,Chỉ những người đăng ký kỷ yếu tốt nghiệp mới phải đóng 62.000 won.,reviewed
+6,118,초등학교,비용,생존수영 교육비 18000원이 스쿨뱅킹으로 빠져나갑니다,생존수영 교육비 18000원은 스쿨뱅킹으로 인출됩니다,Phí lớp bơi sinh tồn 18000 won sẽ được trừ qua school banking,"category:비용|terms:스쿨뱅킹,교육비|money",18.000 won phí giáo dục bơi sinh tồn sẽ được rút qua tài khoản ngân hàng trường học.,reviewed
+7,132,초등학교,일정,2월 7일 오전 10시에 졸업식이 있습니다,졸업식은 2월 7일 금요일 오전 10시에 체육관에서 진행됩니다,,"category:일정|terms:졸업식|keywords:월,일|empty_vi",Lễ tốt nghiệp sẽ diễn ra vào lúc 10 giờ sáng ngày 7 tháng 2.,reviewed
+8,138,초등학교,일정,4월 12일 운동장에서 축구부 공개수업이 있습니다,축구부 공개수업은 4월 12일 운동장에서 진행됩니다,,"category:일정|terms:공개수업|keywords:월,일|empty_vi",Có một lớp học công khai của câu lạc bộ bóng đá trên sân vận động vào ngày 12 tháng 4.,reviewed
+9,141,유치원,제출,급식 모니터링 신청서를 내 주세요,학부모 참여 급식 모니터링 신청서를 제출해 주세요,,"category:제출|terms:신청서,급식|keywords:신청|empty_vi",Vui lòng nộp đơn đăng ký giám sát bữa ăn.,reviewed
+10,146,유치원,제출,알레르기가 있으면 조사서를 내 주세요,급식 알레르기가 있는 유아는 알레르기 조사서를 제출해 주세요,,"category:제출|terms:조사서,알레르기|keywords:조사서|empty_vi","Nếu có dị ứng, vui lòng nộp bản khảo sát.",reviewed
+11,156,초등학교,일정,10월 4일에 가을 운동회가 있습니다,가을 운동회는 10월 4일 금요일 운동장에서 진행됩니다,,"category:일정|terms:운동회|keywords:월,일|empty_vi",Hội thao mùa thu sẽ diễn ra vào ngày 4 tháng 10.,reviewed
+12,157,유치원,비용,간식비 환불은 오래 결석할 때만 됩니다,간식비 환불은 장기 결석 시에만 가능합니다,,"category:비용|terms:간식,간식비,결석|empty_vi",Tiền ăn nhẹ chỉ được hoàn trả khi vắng mặt dài ngày.,reviewed
+13,160,유치원,일정,3월 4일 오전 10시에 입학식이 있습니다,입학식은 3월 4일 월요일 오전 10시에 유희실에서 진행됩니다,,"category:일정|terms:입학식|keywords:월,일|empty_vi",Lễ khai giảng sẽ diễn ra vào lúc 10 giờ sáng ngày 4 tháng 3.,reviewed
+14,171,유치원,제출,금요일까지 숲 체험 동의서를 보내 주세요,숲 체험 참가 동의서를 금요일까지 원으로 보내 주세요,Vui lòng gửi giấy đồng ý tham gia trải nghiệm rừng trước thứ Sáu,"category:제출|terms:동의서|keywords:일,까지,동의서",Vui lòng gửi giấy đồng ý trải nghiệm rừng trước thứ Sáu.,reviewed
+15,187,초등학교,제출,아침 돌봄교실은 먼저 신청한 순서로 받습니다,아침 돌봄교실 신청은 선착순으로 접수됩니다,,"category:제출|terms:돌봄교실|keywords:신청,돌봄|empty_vi",Lớp trông giữ trẻ buổi sáng sẽ nhận theo thứ tự đăng ký trước.,reviewed
+16,189,초등학교,제출,5월 1일까지 글쓰기 대회 원고를 내 주세요,교내 글쓰기 대회 원고는 5월 1일까지 제출합니다,,"category:제출|keywords:월,일,까지|empty_vi",Vui lòng nộp bản thảo cuộc thi viết trước ngày 1 tháng 5.,reviewed
+17,191,유치원,준비물,입학식 날 실내화와 물병을 준비해 주세요,입학식 당일 실내화와 개인 물병을 준비해 주세요,,"category:준비물|terms:실내화,입학식|keywords:준비|empty_vi",Vui lòng chuẩn bị dép đi trong nhà và bình nước vào ngày khai giảng.,reviewed
+18,193,초등학교,일정,5월 17일 방과후 수업은 쉽니다,교내 안전점검으로 5월 17일 방과후 수업이 휴강됩니다,,"category:일정|keywords:월,일,방과후|empty_vi",Lớp học ngoại khóa ngày 17 tháng 5 sẽ được nghỉ.,reviewed
+19,196,유치원,비용,방과후 영어 활동비는 한 달 20000원입니다,방과후 영어 활동비는 월 20000원입니다,,category:비용|keywords:방과후|money|empty_vi,Phí hoạt động tiếng Anh ngoại khóa là 20.000 won một tháng.,reviewed
+20,22,유치원,비용,인형극 관람비 5000원을 내 주세요,인형극 관람비 5000원은 다음 주 월요일까지 납부해 주세요,,category:비용|money|empty_vi,Vui lòng đóng 5.000 won phí xem múa rối.,reviewed
+21,23,유치원,제출,독감 예방접종 여부를 카드에 써 주세요,독감 예방접종 여부를 건강기록 카드에 표시해 주세요,,"category:제출|terms:예방접종,독감|empty_vi",Vui lòng ghi rõ tình trạng tiêm phòng cúm vào thẻ.,reviewed
+22,27,유치원,일정,12월 20일에 크리스마스 발표회가 있습니다,크리스마스 발표회는 12월 20일 금요일 강당에서 열립니다,,"category:일정|keywords:월,일|empty_vi",Có một buổi biểu diễn Giáng sinh vào ngày 20 tháng 12.,reviewed
+23,29,유치원,일정,방과후 미술은 화요일 오후에 합니다,방과후 미술 활동은 매주 화요일 오후에 진행됩니다,,"category:일정|keywords:일,방과후|empty_vi",Lớp mỹ thuật ngoại khóa diễn ra vào chiều thứ Ba.,reviewed
+24,30,유치원,제출,졸업사진을 찍으려면 동의서를 내야 합니다,졸업사진 촬영 동의서를 제출하지 않으면 촬영이 어렵습니다,,category:제출|terms:동의서|keywords:동의서|empty_vi,"Để chụp ảnh tốt nghiệp, bạn phải nộp giấy đồng ý.",reviewed
+25,35,초등학교,건강·안전,5월 16일 오전에 건강검진을 합니다,학생 건강검진은 5월 16일 목요일 오전에 실시됩니다,Khám sức khỏe học sinh sẽ diễn ra sáng ngày 16 tháng 5,"category:건강·안전|terms:건강검진|keywords:월,일",Khám sức khỏe sẽ diễn ra vào sáng ngày 16 tháng 5.,reviewed
+26,39,유치원,준비물,아이가 먹기 쉬운 도시락을 준비해 주세요,현장학습 도시락은 아이가 먹기 쉬운 음식으로 준비해 주세요,,category:준비물|terms:도시락|keywords:준비|empty_vi,Vui lòng chuẩn bị hộp cơm trưa dễ ăn cho trẻ.,reviewed
+27,41,초등학교,일정,10월 2일은 학교에 오지 않습니다,임시공휴일 지정으로 10월 2일은 학교에 오지 않습니다,,"category:일정|keywords:월,일|empty_vi",Không đến trường vào ngày 2 tháng 10.,reviewed
+28,42,초등학교,준비물,다음 주까지 리코더를 준비해 주세요,1인 1악기 수업을 위해 리코더를 다음 주까지 준비해 주세요,,"category:준비물|keywords:까지,준비|empty_vi",Vui lòng chuẩn bị sáo recorder trước tuần sau.,reviewed
+29,46,초등학교,제출,전입생은 등본과 예방접종 확인서를 내 주세요,전입생 서류는 주민등록등본과 예방접종 확인서입니다,,"category:제출|terms:확인서,예방접종|empty_vi",Học sinh chuyển trường vui lòng nộp bản sao hộ khẩu và giấy xác nhận tiêm chủng.,reviewed
+30,51,유치원,제출,상담 시간을 키즈노트 설문에서 골라 주세요,학부모 상담 희망 시간을 키즈노트 설문으로 선택해 주세요,,"category:제출|terms:상담,키즈노트|empty_vi",Vui lòng chọn thời gian tư vấn trong khảo sát trên Kids Note.,reviewed

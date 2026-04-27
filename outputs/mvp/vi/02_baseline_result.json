@@ -1,0 +1,18 @@
+{
+  "id": "1",
+  "source_type": "초등학교",
+  "original_text": "과학 상상화 그리기 대회 참가자는 도화지와 채색 도구를 준비해 주세요",
+  "category": "준비물",
+  "keywords": [
+    "상상화",
+    "도화지",
+    "채색도구"
+  ],
+  "glossary_hits": [
+    {
+      "korean": "도화지",
+      "preferred_term": "giấy vẽ"
+    }
+  ],
+  "action_required": "Y"
+}

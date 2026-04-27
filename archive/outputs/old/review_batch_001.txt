@@ -1,0 +1,149 @@
+1. id=135 / 초등학교 / 제출
+KO: 다음 주 월요일까지 현장체험학습 신청서를 내 주세요
+VI:
+reason: category:제출|terms:체험학습,현장체험학습,신청서|keywords:월,일,까지,신청,체험학습
+
+2. id=26 / 유치원 / 비용
+KO: 간식비 15000원이 매월 10일에 빠져나갑니다
+VI:
+reason: category:비용|terms:간식,간식비|keywords:월,일|money
+
+3. id=83 / 초등학교 / 제출
+KO: 6월 20일까지 영어 캠프 신청서를 내 주세요
+VI:
+reason: category:제출|terms:신청서|keywords:월,일,까지,신청|empty_vi
+
+4. id=112 / 초등학교 / 제출
+KO: 4월 26일까지 알레르기 조사서를 앱으로 내 주세요
+VI:
+reason: category:제출|terms:조사서,알레르기|keywords:월,일,까지,조사서
+
+5. id=125 / 유치원 / 제출
+KO: 월요일까지 현장학습 동의서를 내 주세요
+VI:
+reason: category:제출|terms:동의서|keywords:월,일,까지,동의서|empty_vi
+
+6. id=142 / 유치원 / 제출
+KO: 3월 15일까지 특성화 활동 신청서를 내 주세요
+VI:
+reason: category:제출|terms:신청서|keywords:월,일,까지,신청|empty_vi
+
+7. id=178 / 유치원 / 제출
+KO: 간식 신청 변경은 매월 말일까지 할 수 있습니다
+VI:
+reason: category:제출|terms:간식|keywords:월,일,까지,신청|empty_vi
+
+8. id=182 / 초등학교 / 제출
+KO: 4월 5일까지 우유 급식을 신청할 수 있습니다
+VI:
+reason: category:제출|terms:급식|keywords:월,일,까지,신청|empty_vi
+
+9. id=43 / 초등학교 / 제출
+KO: 이번 주 안에 응급처치 동의서를 내 주세요
+VI:
+reason: category:제출|terms:동의서,응급처치|keywords:동의서,응급처치|empty_vi
+
+10. id=44 / 초등학교 / 제출
+KO: 내일까지 학생 기초조사서를 내 주세요
+VI:
+reason: category:제출|terms:조사서|keywords:일,까지,조사서|empty_vi
+
+11. id=88 / 초등학교 / 제출
+KO: 다음 주 화요일까지 졸업앨범 신청서를 내 주세요
+VI:
+reason: category:제출|terms:신청서|keywords:일,까지,신청|empty_vi
+
+12. id=92 / 초등학교 / 일정
+KO: 이번 주 목요일까지 학부모 상담을 신청할 수 있습니다
+VI:
+reason: category:일정|terms:상담,학부모 상담|keywords:일,까지,신청
+
+13. id=95 / 초등학교 / 제출
+KO: 5월 3일 오후 5시까지 방과후학교를 신청해 주세요
+VI:
+reason: category:제출|terms:방과후학교|keywords:월,일,까지,신청,방과후
+
+14. id=97 / 초등학교 / 일정
+KO: 방학 돌봄교실은 오전 9시부터 오후 5시까지 합니다
+VI:
+reason: category:일정|terms:돌봄교실,방학|keywords:까지,돌봄|empty_vi
+
+15. id=120 / 초등학교 / 비용
+KO: 우유 급식비는 한 달 18000원입니다
+VI:
+reason: category:비용|terms:급식비,급식|money|empty_vi
+
+16. id=128 / 유치원 / 제출
+KO: 금요일까지 유아 기초조사서를 내 주세요
+VI:
+reason: category:제출|terms:조사서|keywords:일,까지,조사서|empty_vi
+
+17. id=129 / 초등학교 / 준비물
+KO: 현장체험학습 날 도시락 물 물티슈를 준비해 주세요
+VI:
+reason: category:준비물|terms:체험학습,현장체험학습,도시락|keywords:준비,체험학습
+
+18. id=163 / 초등학교 / 제출
+KO: 3월 18일까지 학부모 총회 참석 여부를 알려 주세요
+VI:
+reason: category:제출|terms:학부모 총회|keywords:월,일,까지|empty_vi
+
+19. id=165 / 초등학교 / 제출
+KO: 4월 30일까지 개인정보 동의서를 내 주세요
+VI:
+reason: category:제출|terms:동의서|keywords:월,일,까지,동의서
+
+20. id=167 / 초등학교 / 준비물
+KO: 개학일에 방학 과제와 실내화를 가져오세요
+VI:
+reason: category:준비물|terms:실내화,방학,개학|keywords:일|empty_vi
+
+21. id=169 / 초등학교 / 준비물
+KO: 금요일까지 색종이와 풀을 보내 주세요
+VI:
+reason: category:준비물|terms:색종이,풀|keywords:일,까지|empty_vi
+
+22. id=176 / 유치원 / 제출
+KO: 수요일까지 동물 체험 동의서를 내 주세요
+VI:
+reason: category:제출|terms:동의서|keywords:일,까지,동의서|empty_vi
+
+23. id=195 / 초등학교 / 제출
+KO: 독감 예방접종 여부를 건강조사서에 써 주세요
+VI:
+reason: category:제출|terms:조사서,예방접종,독감|keywords:조사서|empty_vi
+
+24. id=31 / 초등학교 / 준비물
+KO: 운동회 날 점심 도시락을 준비해 주세요
+VI:
+reason: category:준비물|terms:도시락,운동회|keywords:준비|empty_vi
+
+25. id=33 / 초등학교 / 제출
+KO: 스쿨뱅킹 계좌를 바꾸려면 신청서를 내 주세요
+VI:
+reason: category:제출|terms:신청서,스쿨뱅킹|keywords:신청|empty_vi
+
+26. id=45 / 유치원 / 제출
+KO: 겨울방학 방과후 과정 신청 여부를 알려 주세요
+VI:
+reason: category:제출|terms:방학|keywords:신청,방과후|empty_vi
+
+27. id=48 / 초등학교 / 제출
+KO: 급식 모니터링을 원하면 신청서를 내 주세요
+VI:
+reason: category:제출|terms:신청서,급식|keywords:신청|empty_vi
+
+28. id=53 / 초등학교 / 제출
+KO: 이번 주 수요일까지 스포츠클럽을 신청해 주세요
+VI:
+reason: category:제출|keywords:일,까지,신청|empty_vi
+
+29. id=55 / 유치원 / 일정
+KO: 9월 27일 유치원 강당에서 운동회를 합니다
+VI:
+reason: category:일정|terms:운동회|keywords:월,일|empty_vi
+
+30. id=56 / 초등학교 / 일정
+KO: 체험학습 날 오전 8시 40분까지 학교에 오세요
+VI:
+reason: category:일정|terms:체험학습|keywords:까지,체험학습|empty_vi

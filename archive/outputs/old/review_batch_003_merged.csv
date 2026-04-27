@@ -1,0 +1,31 @@
+batch_no,id,source_type,category,easy_korean,original_text,current_vietnamese,review_reason,human_vi,review_status
+1,54,초등학교,일정,종업식 날에는 급식 없이 4교시 후 집에 갑니다,종업식 당일에는 급식 없이 4교시 후 하교합니다,,"category:일정|terms:종업식,급식|empty_vi","Vào ngày bế giảng, học sinh sẽ về nhà sau tiết 4 mà không có bữa ăn ở trường.",reviewed
+2,58,초등학교,제출,보험 가입에 필요한 정보를 제출해 주세요,체험학습 보험 가입을 위해 주민등록번호 뒷자리를 비공개로 제출해 주세요,,category:제출|terms:제출|keywords:제출|empty_vi,Vui lòng nộp các thông tin cần thiết để đăng ký bảo hiểm.,reviewed
+3,64,유치원,비용,현장학습 참가비 14000원을 내 주세요,현장학습 참가비 14000원을 납부해 주세요,,category:비용|money|empty_vi,Vui lòng đóng 14.000 won phí tham gia học tập trải nghiệm.,reviewed
+4,67,초등학교,건강·안전,6월 12일에 구강검진을 합니다,보건소 구강검진은 6월 12일 수요일에 진행됩니다,,"category:건강·안전|keywords:월,일|empty_vi",Khám răng miệng sẽ diễn ra vào ngày 12 tháng 6.,reviewed
+5,68,초등학교,일정,4월 15일 음악실에서 합창부 오디션이 있습니다,합창부 오디션은 4월 15일 음악실에서 실시됩니다,,"category:일정|keywords:월,일|empty_vi",Có buổi thử giọng của câu lạc bộ hợp xướng tại phòng âm nhạc vào ngày 15 tháng 4.,reviewed
+6,80,유치원,일정,4월 19일에 어린이대공원으로 갑니다,봄 현장학습은 4월 19일 어린이대공원에서 진행됩니다,,"category:일정|keywords:월,일|empty_vi",Chúng ta sẽ đi Công viên Đại công viên Trẻ em vào ngày 19 tháng 4.,reviewed
+7,84,유치원,제출,금요일까지 사진 사용 동의 여부를 내 주세요,원아 사진 사용 동의 여부를 금요일까지 제출해 주세요,,"category:제출|keywords:일,까지|empty_vi",Vui lòng nộp giấy đồng ý sử dụng hình ảnh trước thứ Sáu.,reviewed
+8,85,유치원,일정,11월 7일 오전에 인형극을 봅니다,원내 인형극 관람은 11월 7일 오전에 진행됩니다,,"category:일정|keywords:월,일|empty_vi",Sẽ xem múa rối vào sáng ngày 7 tháng 11.,reviewed
+9,86,초등학교,일정,6월 18일에 온라인 학부모 연수가 있습니다,학부모 연수는 6월 18일 온라인으로 진행됩니다,,"category:일정|keywords:월,일|empty_vi",Có buổi tập huấn phụ huynh trực tuyến vào ngày 18 tháng 6.,reviewed
+10,91,초등학교,제출,공개수업 참관은 학교 앱에서 신청합니다,학부모 공개수업 참관 신청은 학교 앱에서 가능합니다,,category:제출|terms:공개수업|keywords:신청|empty_vi,Việc tham quan lớp học công khai được đăng ký trên ứng dụng của trường.,reviewed
+11,96,초등학교,일정,5월 30일 도서관에서 독서 골든벨이 있습니다,독서 골든벨은 5월 30일 도서관에서 열립니다,,"category:일정|keywords:월,일|empty_vi",Sẽ có cuộc thi rung chuông vàng đọc sách tại thư viện vào ngày 30 tháng 5.,reviewed
+12,99,유치원,준비물,계절에 맞는 여벌옷과 속옷을 준비해 주세요,여벌옷은 계절에 맞게 속옷까지 포함해 준비해 주세요,,category:준비물|terms:여벌옷|keywords:준비|empty_vi,Vui lòng chuẩn bị quần áo dự phòng và đồ lót phù hợp với thời tiết.,reviewed
+13,101,초등학교,제출,전교임원 후보는 신청서를 내야 합니다,전교임원 후보자는 후보 등록 신청서를 제출해야 합니다,,category:제출|terms:신청서|keywords:신청|empty_vi,Các ứng cử viên ban cán sự trường phải nộp đơn đăng ký.,reviewed
+14,110,초등학교,준비물,세면도구 여벌옷 필기도구를 준비해 주세요,수학여행 준비물은 세면도구 여벌옷 필기도구입니다,,category:준비물|terms:여벌옷|keywords:준비|empty_vi,"Vui lòng chuẩn bị đồ dùng vệ sinh cá nhân, quần áo dự phòng và dụng cụ học tập.",reviewed
+15,113,초등학교,일정,5월 10일 금요일에 봄 소풍을 갑니다,봄 소풍은 5월 10일 금요일에 학교 운동장에서 출발합니다,Chuyến dã ngoại mùa xuân diễn ra vào thứ Sáu ngày 10 tháng 5,"category:일정|terms:소풍|keywords:월,일","Chúng ta sẽ đi dã ngoại mùa xuân vào thứ Sáu, ngày 10 tháng 5.",reviewed
+16,115,초등학교,제출,금요일까지 사이버폭력 예방 서약서를 내 주세요,사이버폭력 예방 실천 서약서를 금요일까지 제출해 주세요,,"category:제출|keywords:일,까지|empty_vi",Vui lòng nộp bản cam kết phòng chống bạo lực mạng trước thứ Sáu.,reviewed
+17,116,초등학교,일정,4월 21일에 과학의 날 행사를 합니다,과학의 날 행사는 4월 21일 각 교실에서 진행됩니다,,"category:일정|keywords:월,일|empty_vi",Sự kiện Ngày Khoa học sẽ được tổ chức vào ngày 21 tháng 4.,reviewed
+18,117,초등학교,비용,단체 사진 구입비는 5000원입니다,학급 단체 사진 구입비는 5000원입니다,,category:비용|money|empty_vi,Phí mua ảnh tập thể là 5.000 won.,reviewed
+19,119,유치원,일정,2월 14일 오전 10시에 수료식이 있습니다,수료식은 2월 14일 금요일 오전 10시에 각 교실에서 진행됩니다,,"category:일정|keywords:월,일|empty_vi",Lễ bế giảng sẽ diễn ra vào lúc 10 giờ sáng ngày 14 tháng 2.,reviewed
+20,123,유치원,일정,5월 11일 오전에 가족 참여 수업이 있습니다,가족 참여 수업은 5월 11일 토요일 오전에 진행됩니다,,"category:일정|keywords:월,일|empty_vi",Có một lớp học có sự tham gia của gia đình vào sáng ngày 11 tháng 5.,reviewed
+21,124,초등학교,일정,5월 8일에 학급 사진을 찍습니다,학급 사진 촬영은 5월 8일 수요일에 진행됩니다,Lớp sẽ chụp ảnh vào ngày 8 tháng 5,"category:일정|terms:학급|keywords:월,일",Sẽ chụp ảnh lớp vào ngày 8 tháng 5.,reviewed
+22,127,유치원,제출,차량 노선 변경은 전날 오후 4시까지 신청해 주세요,하원 차량 노선 변경 신청은 전날 오후 4시까지 가능합니다,,"category:제출|keywords:까지,신청|empty_vi",Vui lòng đăng ký thay đổi tuyến đường xe trước 4 giờ chiều ngày hôm trước.,reviewed
+23,137,유치원,일정,5월 24일 오전 10시에 공개수업이 있습니다,학부모 공개수업은 5월 24일 금요일 오전 10시에 시작합니다,Giờ học mở cho phụ huynh bắt đầu lúc 10 giờ sáng ngày 24 tháng 5,"category:일정|terms:공개수업|keywords:월,일",Lớp học công khai sẽ diễn ra vào lúc 10 giờ sáng ngày 24 tháng 5.,reviewed
+24,144,초등학교,준비물,실내화를 빨아서 월요일에 가져오세요,실내화는 매주 금요일 가정으로 보내니 세탁 후 월요일에 가져오세요,Vui lòng giặt dép đi trong lớp và mang lại vào thứ Hai,"category:준비물|terms:실내화|keywords:월,일",Vui lòng giặt dép đi trong nhà và mang đến vào thứ Hai.,reviewed
+25,147,유치원,제출,적응기간 하원 시간을 확인해 주세요,적응기간 하원 시간을 보호자가 확인해 주세요,,category:제출|terms:하원|keywords:하원|empty_vi,Vui lòng kiểm tra thời gian về trong thời gian thích nghi.,reviewed
+26,155,유치원,건강·안전,6월 4일 오전에 소방대피훈련을 합니다,소방대피훈련은 6월 4일 오전에 실시됩니다,,"category:건강·안전|keywords:월,일|empty_vi",Sẽ có cuộc diễn tập sơ tán hỏa hoạn vào sáng ngày 4 tháng 6.,reviewed
+27,158,유치원,비용,발표회 의상비 25000원을 내 주세요,발표회 의상비 25000원을 납부해 주세요,,category:비용|money|empty_vi,Vui lòng đóng 25.000 won tiền trang phục biểu diễn.,reviewed
+28,162,초등학교,비용,급식비 지원이 필요하면 행정실에 물어보세요,급식비 지원 신청이 필요한 가정은 행정실로 문의해 주세요,Nếu cần hỗ trợ tiền ăn vui lòng liên hệ văn phòng hành chính,"category:비용|terms:급식비,행정실,급식","Nếu cần hỗ trợ tiền ăn, vui lòng hỏi phòng hành chính.",reviewed
+29,164,유치원,비용,요리 활동 재료비 8000원을 내 주세요,요리 활동 재료비 8000원을 납부해 주세요,,category:비용|money|empty_vi,Vui lòng đóng 8.000 won tiền nguyên liệu hoạt động nấu ăn.,reviewed
+30,168,초등학교,제출,합창부를 하려면 보호자 동의서를 내 주세요,합창부 참가 희망자는 보호자 동의서를 제출해 주세요,,category:제출|terms:동의서|keywords:동의서|empty_vi,"Để tham gia câu lạc bộ hợp xướng, vui lòng nộp giấy đồng ý của người giám hộ.",reviewed

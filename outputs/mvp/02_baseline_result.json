@@ -1,18 +1,14 @@
 {
   "id": "1",
-  "source_type": "초등학교",
-  "original_text": "과학 상상화 그리기 대회 참가자는 도화지와 채색 도구를 준비해 주세요",
-  "category": "준비물",
-  "keywords": [
-    "상상화",
-    "도화지",
-    "채색도구"
-  ],
+  "source_type": "",
+  "original_text": "내일 현장학습이 있습니다. 아이는 물병과 도시락을 가져와 주세요. 아침 9시까지 학교 운동장으로 와 주세요.",
+  "category": "일정",
+  "keywords": [],
   "glossary_hits": [
     {
-      "korean": "도화지",
-      "preferred_vi": "giấy vẽ"
+      "korean": "도시락",
+      "preferred_vi": "cơm hộp"
     }
   ],
-  "action_required": "Y"
+  "action_required": ""
 }

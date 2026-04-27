@@ -1,0 +1,149 @@
+1. id=59 / 초등학교 / 제출
+KO: 급식 대체식을 원하면 신청서를 보건실에 내 주세요
+VI:
+reason: category:제출|terms:신청서,급식|keywords:신청|empty_vi
+
+2. id=75 / 유치원 / 제출
+KO: 하원 시간이 바뀌면 오후 1시 전까지 키즈노트로 알려 주세요
+VI:
+reason: category:제출|terms:하원,키즈노트|keywords:까지,하원
+
+3. id=82 / 초등학교 / 일정
+KO: 3월 22일 오후 2시에 학부모 총회가 있습니다
+VI:
+reason: category:일정|terms:학부모 총회|keywords:월,일|empty_vi
+
+4. id=94 / 유치원 / 건강·안전
+KO: 등원할 때 아이 손을 잡고 현관까지 와 주세요
+VI:
+reason: category:건강·안전|terms:등원|keywords:까지,등원|empty_vi
+
+5. id=114 / 초등학교 / 비용
+KO: 졸업앨범을 신청한 사람만 62000원을 냅니다
+VI:
+reason: category:비용|keywords:신청|money|empty_vi
+
+6. id=118 / 초등학교 / 비용
+KO: 생존수영 교육비 18000원이 스쿨뱅킹으로 빠져나갑니다
+VI:
+reason: category:비용|terms:스쿨뱅킹,교육비|money
+
+7. id=132 / 초등학교 / 일정
+KO: 2월 7일 오전 10시에 졸업식이 있습니다
+VI:
+reason: category:일정|terms:졸업식|keywords:월,일|empty_vi
+
+8. id=138 / 초등학교 / 일정
+KO: 4월 12일 운동장에서 축구부 공개수업이 있습니다
+VI:
+reason: category:일정|terms:공개수업|keywords:월,일|empty_vi
+
+9. id=141 / 유치원 / 제출
+KO: 급식 모니터링 신청서를 내 주세요
+VI:
+reason: category:제출|terms:신청서,급식|keywords:신청|empty_vi
+
+10. id=146 / 유치원 / 제출
+KO: 알레르기가 있으면 조사서를 내 주세요
+VI:
+reason: category:제출|terms:조사서,알레르기|keywords:조사서|empty_vi
+
+11. id=156 / 초등학교 / 일정
+KO: 10월 4일에 가을 운동회가 있습니다
+VI:
+reason: category:일정|terms:운동회|keywords:월,일|empty_vi
+
+12. id=157 / 유치원 / 비용
+KO: 간식비 환불은 오래 결석할 때만 됩니다
+VI:
+reason: category:비용|terms:간식,간식비,결석|empty_vi
+
+13. id=160 / 유치원 / 일정
+KO: 3월 4일 오전 10시에 입학식이 있습니다
+VI:
+reason: category:일정|terms:입학식|keywords:월,일|empty_vi
+
+14. id=171 / 유치원 / 제출
+KO: 금요일까지 숲 체험 동의서를 보내 주세요
+VI:
+reason: category:제출|terms:동의서|keywords:일,까지,동의서
+
+15. id=187 / 초등학교 / 제출
+KO: 아침 돌봄교실은 먼저 신청한 순서로 받습니다
+VI:
+reason: category:제출|terms:돌봄교실|keywords:신청,돌봄|empty_vi
+
+16. id=189 / 초등학교 / 제출
+KO: 5월 1일까지 글쓰기 대회 원고를 내 주세요
+VI:
+reason: category:제출|keywords:월,일,까지|empty_vi
+
+17. id=191 / 유치원 / 준비물
+KO: 입학식 날 실내화와 물병을 준비해 주세요
+VI:
+reason: category:준비물|terms:실내화,입학식|keywords:준비|empty_vi
+
+18. id=193 / 초등학교 / 일정
+KO: 5월 17일 방과후 수업은 쉽니다
+VI:
+reason: category:일정|keywords:월,일,방과후|empty_vi
+
+19. id=196 / 유치원 / 비용
+KO: 방과후 영어 활동비는 한 달 20000원입니다
+VI:
+reason: category:비용|keywords:방과후|money|empty_vi
+
+20. id=22 / 유치원 / 비용
+KO: 인형극 관람비 5000원을 내 주세요
+VI:
+reason: category:비용|money|empty_vi
+
+21. id=23 / 유치원 / 제출
+KO: 독감 예방접종 여부를 카드에 써 주세요
+VI:
+reason: category:제출|terms:예방접종,독감|empty_vi
+
+22. id=27 / 유치원 / 일정
+KO: 12월 20일에 크리스마스 발표회가 있습니다
+VI:
+reason: category:일정|keywords:월,일|empty_vi
+
+23. id=29 / 유치원 / 일정
+KO: 방과후 미술은 화요일 오후에 합니다
+VI:
+reason: category:일정|keywords:일,방과후|empty_vi
+
+24. id=30 / 유치원 / 제출
+KO: 졸업사진을 찍으려면 동의서를 내야 합니다
+VI:
+reason: category:제출|terms:동의서|keywords:동의서|empty_vi
+
+25. id=35 / 초등학교 / 건강·안전
+KO: 5월 16일 오전에 건강검진을 합니다
+VI:
+reason: category:건강·안전|terms:건강검진|keywords:월,일
+
+26. id=39 / 유치원 / 준비물
+KO: 아이가 먹기 쉬운 도시락을 준비해 주세요
+VI:
+reason: category:준비물|terms:도시락|keywords:준비|empty_vi
+
+27. id=41 / 초등학교 / 일정
+KO: 10월 2일은 학교에 오지 않습니다
+VI:
+reason: category:일정|keywords:월,일|empty_vi
+
+28. id=42 / 초등학교 / 준비물
+KO: 다음 주까지 리코더를 준비해 주세요
+VI:
+reason: category:준비물|keywords:까지,준비|empty_vi
+
+29. id=46 / 초등학교 / 제출
+KO: 전입생은 등본과 예방접종 확인서를 내 주세요
+VI:
+reason: category:제출|terms:확인서,예방접종|empty_vi
+
+30. id=51 / 유치원 / 제출
+KO: 상담 시간을 키즈노트 설문에서 골라 주세요
+VI:
+reason: category:제출|terms:상담,키즈노트|empty_vi

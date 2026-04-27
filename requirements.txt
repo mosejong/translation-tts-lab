@@ -4,3 +4,6 @@ sentencepiece
 protobuf
 scipy
 tqdm
+edge-tts
+google-genai
+python-dotenv

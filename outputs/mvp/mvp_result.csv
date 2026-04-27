@@ -1,2 +1,4 @@
 source_text,category,keywords,easy_ko_text,vi_text,glossary_hits,quality_label,quality_note,tts_path
-과학 상상화 그리기 대회 참가자는 도화지와 채색 도구를 준비해 주세요,준비물,상상화|도화지|채색도구,대회에 나가면 도화지와 색칠 도구를 준비해 주세요,Hãy chuẩn bị đồ sơn và công cụ sơn cho các bạn khi tham dự cuộc thi.,도화지->giấy vẽ; 색칠 도구->dụng cụ tô màu,review_needed,도화지->giấy vẽ; 색칠 도구->dụng cụ tô màu,outputs/mvp/06_tts_output.wav
+내일 현장학습이 있습니다. 아이는 물병과 도시락을 가져와 주세요. 아침 9시까지 학교 운동장으로 와 주세요.,일정,,"내일 현장학습이 있습니다.
+아이는 물병과 도시락을 가져와 주세요.
+아침 9시까지 학교 운동장으로 와 주세요.","Ngày mai, chúng tôi có một buổi học tại trường. Hãy mang cho trẻ một chai nước và đồ uống, và đến sân vận động của trường vào lúc 9 giờ sáng.",도시락->cơm hộp,review_needed,도시락->cơm hộp,outputs\mvp\05_tts_output.mp3

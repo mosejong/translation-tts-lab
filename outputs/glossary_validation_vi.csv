@@ -1,0 +1,145 @@
+korean,preferred_vi,gemini_suggestion,status,note
+앞치마,tạp dề,tạp dề,match,유치원 요리/김장 활동 준비물
+머릿수건,khăn trùm đầu,khăn trùm đầu,match,유치원 요리/김장 활동 준비물
+체험학습,hoạt động trải nghiệm,buổi trải nghiệm,mismatch,학교 체험 활동
+현장체험학습,chuyến tham quan học tập,buổi trải nghiệm thực tế,mismatch,학교 밖 체험학습
+원복,đồng phục,đồng phục trường,match,유치원 지정 복장
+도화지,giấy vẽ,giấy vẽ,match,미술 준비물
+색칠 도구,dụng cụ tô màu,đồ dùng tô màu,mismatch,미술 준비물
+정서행동 검사,kiểm tra đặc điểm cảm xúc và hành vi,kiểm tra tâm lý và hành vi,mismatch,학생 검사
+돌봄교실,lớp chăm sóc sau giờ học,lớp chăm sóc trẻ,mismatch,초등 돌봄
+방과후학교,lớp sau giờ học,lớp học sau giờ học,mismatch,방과후 프로그램
+하원,giờ đón trẻ,tan trường (về nhà),mismatch,유치원 귀가
+등원,giờ đưa trẻ đến lớp,đi học (đến trường),mismatch,유치원 등교
+가정통신문,thông báo gửi phụ huynh,thông báo gửi gia đình,mismatch,기타
+알림장,sổ liên lạc,sổ liên lạc,match,기타
+공지사항,thông báo,thông báo,match,기타
+동의서,giấy đồng ý,giấy đồng ý,match,제출 서류
+신청서,đơn đăng ký,đơn đăng ký,match,제출 서류
+조사서,phiếu khảo sát,phiếu khảo sát,match,제출 서류
+확인서,giấy xác nhận,giấy xác nhận,match,제출 서류
+안내문,thông báo hướng dẫn,tờ hướng dẫn,mismatch,기타
+회신,phản hồi,phản hồi lại,match,제출
+제출,nộp,nộp,match,행동 동사
+서명,ký tên,ký tên,match,행동 동사
+참가 여부,có tham gia hay không,việc có tham gia hay không,match,제출
+불참,không tham gia,không tham gia,match,제출
+기한,thời hạn,thời hạn,match,일정
+마감일,hạn chót,ngày hết hạn,mismatch,일정
+준비물,đồ cần chuẩn bị,đồ dùng cần chuẩn bị,mismatch,준비물 범주
+실내화,dép đi trong lớp,dép đi trong nhà,mismatch,준비물
+체육복,đồng phục thể dục,đồ thể dục,mismatch,준비물
+여벌옷,quần áo thay,quần áo dự phòng,mismatch,준비물
+개인 물병,bình nước cá nhân,bình nước cá nhân,match,준비물
+도시락,cơm hộp,cơm hộp,match,준비물
+간식,đồ ăn nhẹ,đồ ăn nhẹ,match,준비물/비용
+간식비,phí ăn nhẹ,tiền ăn nhẹ,mismatch,비용
+돗자리,thảm ngồi,thảm ngồi,match,준비물
+색종이,giấy màu,giấy màu,match,준비물
+풀,keo dán,hồ dán,mismatch,준비물
+가위,kéo,kéo,match,준비물
+크레파스,bút sáp màu,bút màu sáp,mismatch,준비물
+네임펜,bút lông dầu,bút dạ viết tên,mismatch,준비물
+스쿨뱅킹,school banking,스쿨뱅킹,mismatch,납부 방식
+납부,nộp,đóng tiền,mismatch,비용 행동
+자동이체,trừ tự động,chuyển khoản tự động,mismatch,비용 행동
+교육비,phí giáo dục,tiền học phí,mismatch,비용
+급식비,tiền ăn,tiền ăn bán trú,match,비용
+체험학습비,phí hoạt động trải nghiệm,phí trải nghiệm,mismatch,비용
+등교,đến trường,đi học,mismatch,초등학교 등교
+하교,tan học,tan học,match,초등학교 하교
+결석,nghỉ học,nghỉ học,match,출결
+지각,đi muộn,đi muộn,match,출결
+조퇴,về sớm,về sớm,match,출결
+전학,chuyển trường,chuyển trường,match,출결/학적
+출석인정,được công nhận có mặt,điểm danh hợp lệ,mismatch,출결
+출결,chuyên cần,điểm danh chuyên cần,match,출결
+담임교사,giáo viên chủ nhiệm,giáo viên chủ nhiệm,match,학교 담당자
+원장,hiệu trưởng,hiệu trưởng,match,유치원 담당자
+교무실,phòng giáo vụ,phòng giáo vụ,match,학교 부서
+행정실,văn phòng hành chính,phòng hành chính,match,학교 부서
+상담,tư vấn,tư vấn/trao đổi,match,상담
+학부모 상담,tư vấn phụ huynh,tư vấn phụ huynh,match,상담
+공개수업,tiết học mở,tiết học dự giờ,mismatch,일정
+학부모 총회,họp toàn thể phụ huynh,họp phụ huynh đầu năm,mismatch,일정
+운동회,ngày hội thể thao,hội thao,mismatch,행사
+학예회,buổi biểu diễn văn nghệ,buổi biểu diễn văn nghệ,match,행사
+소풍,dã ngoại,đi dã ngoại,match,행사
+수련회,trại sinh hoạt tập thể,buổi cắm trại huấn luyện,mismatch,일정
+방학,kỳ nghỉ,kỳ nghỉ,match,일정
+개학,ngày tựu trường,ngày bắt đầu học kỳ mới,mismatch,일정
+입학식,lễ nhập học,lễ nhập học,match,행사
+졸업식,lễ tốt nghiệp,lễ tốt nghiệp,match,행사
+종업식,lễ kết thúc năm học,lễ bế giảng năm học,mismatch,일정
+학급,lớp,lớp học,match,학교 단위
+학년,khối lớp,khối lớp,match,학교 단위
+반,lớp,lớp,match,학교 단위
+번호,số,số thứ tự,match,학교 단위
+급식,bữa ăn ở trường,suất ăn tại trường,mismatch,급식
+식단표,thực đơn,thực đơn,match,급식
+알레르기,dị ứng,dị ứng,match,건강
+예방접종,tiêm phòng,tiêm phòng,match,건강
+건강검진,khám sức khỏe,khám sức khỏe,match,건강
+신체검사,khám sức khỏe thể chất,kiểm tra thân thể,mismatch,건강
+감염병,bệnh truyền nhiễm,bệnh truyền nhiễm,match,건강
+머릿니,chấy,chấy rận,match,건강
+독감,cúm,cúm,match,건강
+코로나,COVID-19,코로나,mismatch,건강
+미세먼지,bụi mịn,bụi mịn,match,건강
+안전교육,giáo dục an toàn,giáo dục an toàn,match,안전
+재난대피훈련,diễn tập sơ tán khi có thiên tai,diễn tập sơ tán,match,안전
+학교폭력,bạo lực học đường,bạo lực học đường,match,안전
+생활지도,hướng dẫn nề nếp sinh hoạt,hướng dẫn sinh hoạt,mismatch,건강·안전
+교통안전,an toàn giao thông,an toàn giao thông,match,안전
+귀가 동의,đồng ý cho ra về,đồng ý cho con tự về,mismatch,제출
+귀가 동의서,giấy đồng ý cho trẻ ra về,giấy đồng ý cho con tự về,mismatch,제출 서류
+응급처치,sơ cứu,sơ cứu,match,건강/안전
+투약 의뢰서,phiếu yêu cầu cho uống thuốc,giấy nhờ cho bé uống thuốc,mismatch,제출 서류
+칫솔,bàn chải đánh răng,bàn chải đánh răng,match,준비물
+컵,cốc,cốc nước,match,준비물
+수건,khăn,khăn mặt,match,준비물
+방과후 신청,đăng ký lớp sau giờ học,đăng ký học sau giờ học,mismatch,제출
+돌봄 신청,đăng ký lớp chăm sóc sau giờ học,đăng ký lớp chăm sóc trẻ,mismatch,제출
+키즈노트,Kids Note,키즈노트,mismatch,서비스명
+학교종이,School Bell,학교종이,mismatch,서비스명 확인완료
+하이클래스,HiClass,하이클래스,mismatch,서비스명
+e알리미,e-Alimi,e알리미,mismatch,서비스명
+숙제,bài tập về nhà,bài tập về nhà,match,기타
+수행평가,đánh giá thực hành,đánh giá năng lực,mismatch,기타
+준비 학습,bài học chuẩn bị,chuẩn bị bài học,mismatch,기타
+독서 활동,hoạt động đọc sách,hoạt động đọc sách,match,기타
+방학 과제,bài tập kỳ nghỉ,bài tập kỳ nghỉ,match,기타
+개인정보 동의서,giấy đồng ý cung cấp thông tin cá nhân,giấy đồng ý thông tin cá nhân,mismatch,제출
+응급 연락처,số liên lạc khẩn cấp,số liên lạc khẩn cấp,match,건강·안전
+보호자,người giám hộ,phụ huynh/người bảo hộ,mismatch,기타
+보호자 서명,chữ ký của người giám hộ,chữ ký phụ huynh,mismatch,제출
+비상 연락망,mạng lưới liên lạc khẩn cấp,danh sách liên lạc khẩn cấp,mismatch,건강·안전
+우산,ô,cái ô,match,준비물
+마스크,khẩu trang,khẩu trang,match,건강·안전
+여분 마스크,khẩu trang dự phòng,khẩu trang dự phòng,match,건강·안전
+손 소독제,nước rửa tay khô,nước rửa tay khô,match,건강·안전
+실습복,đồ thực hành,đồ thực hành,match,준비물
+우천 시,khi trời mưa,trường hợp trời mưa,mismatch,일정
+연기,hoãn,hoãn lại,match,일정
+취소,hủy,hủy bỏ,match,일정
+변경 사항,nội dung thay đổi,nội dung thay đổi,match,기타
+원,won,won,match,한국 통화 단위 (₩)
+수업비,học phí,tiền học,mismatch,비용
+수업료,học phí,học phí,match,비용
+방과후 수업,lớp sau giờ học,lớp học thêm sau giờ học,mismatch,일정
+영어 수업,lớp tiếng Anh,lớp học tiếng Anh,mismatch,일정
+교재,sách giáo khoa,sách giáo khoa/giáo trình,match,준비물
+필통,hộp bút,hộp bút,match,준비물
+색연필,bút chì màu,bút chì màu,match,준비물
+연필,bút chì,bút chì,match,준비물
+지우개,cục tẩy,cục tẩy,match,준비물
+공책,vở,quyển vở,match,준비물
+보호자 연락처,số liên lạc người giám hộ,số điện thoại phụ huynh,mismatch,건강·안전
+오후,buổi chiều,buổi chiều,match,일정
+오전,buổi sáng,buổi sáng,match,일정
+월요일,thứ Hai,Thứ Hai,match,일정
+화요일,thứ Ba,Thứ Ba,match,일정
+수요일,thứ Tư,Thứ Tư,match,일정
+목요일,thứ Năm,Thứ Năm,match,일정
+금요일,thứ Sáu,Thứ Sáu,match,일정
+귀가,trở về nhà,về nhà,match,일정

@@ -1,0 +1,149 @@
+1. id=170 / 초등학교 / 제출
+KO: 체험학습 보고서를 7일 안에 내야 출석으로 인정됩니다
+VI:
+reason: category:제출|terms:체험학습|keywords:일,체험학습
+
+2. id=174 / 초등학교 / 건강·안전
+KO: 다음 주 등교 시간에 교통안전 캠페인을 합니다
+VI:
+reason: category:건강·안전|terms:등교,교통안전|empty_vi
+
+3. id=175 / 유치원 / 준비물
+KO: 수영복 여벌옷 수건 비닐봉투를 준비해 주세요
+VI:
+reason: category:준비물|terms:여벌옷,수건|keywords:준비
+
+4. id=180 / 초등학교 / 준비물
+KO: 다음 주까지 풀 가위 색연필을 보내 주세요
+VI:
+reason: category:준비물|terms:풀,가위|keywords:까지
+
+5. id=184 / 유치원 / 준비물
+KO: 앞치마와 개인 마스크를 준비해 주세요
+VI:
+reason: category:준비물|terms:앞치마|keywords:준비|empty_vi
+
+6. id=186 / 유치원 / 기타
+KO: 원복은 월요일과 행사일에 입습니다
+VI:
+reason: terms:원복|keywords:월,일,원복|empty_vi
+
+7. id=190 / 초등학교 / 일정
+KO: 6월 3일부터 6월 7일까지 생존수영을 합니다
+VI:
+reason: category:일정|keywords:월,일,까지
+
+8. id=198 / 유치원 / 비용
+KO: 유아학비 지원 안내문을 보고 신청해 주세요
+VI:
+reason: category:비용|terms:안내문|keywords:신청|empty_vi
+
+9. id=25 / 초등학교 / 제출
+KO: 결석하면 오전 9시 전까지 이유를 앱에 써 주세요
+VI:
+reason: category:제출|terms:결석|keywords:까지
+
+10. id=34 / 초등학교 / 준비물
+KO: 사물함 이름표 스티커를 준비해 주세요
+VI:
+reason: category:준비물|keywords:준비|empty_vi
+
+11. id=36 / 유치원 / 일정
+KO: 발표회 날 오전 9시까지 와 주세요
+VI:
+reason: category:일정|keywords:까지|empty_vi
+
+12. id=37 / 초등학교 / 준비물
+KO: 깨끗한 개인 물병을 매일 보내 주세요
+VI:
+reason: category:준비물|terms:개인 물병|keywords:일
+
+13. id=50 / 유치원 / 제출
+KO: 귀가 시간이 바뀌면 키즈노트로 알려 주세요
+VI:
+reason: category:제출|terms:키즈노트|empty_vi
+
+14. id=61 / 유치원 / 제출
+KO: 학부모 자원봉사는 먼저 신청한 순서로 받습니다
+VI:
+reason: category:제출|keywords:신청|empty_vi
+
+15. id=69 / 초등학교 / 건강·안전
+KO: 태풍 때 등교 시간 변경은 앱으로 알려 줍니다
+VI:
+reason: category:건강·안전|terms:등교|empty_vi
+
+16. id=70 / 초등학교 / 준비물
+KO: 학예회 때 흰색 윗옷과 검정색 바지를 준비해 주세요
+VI:
+reason: category:준비물|terms:학예회|keywords:준비
+
+17. id=78 / 유치원 / 제출
+KO: 알레르기 여부를 설문으로 알려 주세요
+VI:
+reason: category:제출|terms:알레르기|empty_vi
+
+18. id=87 / 초등학교 / 비용
+KO: 교육급여는 주민센터나 복지로에서 신청합니다
+VI:
+reason: category:비용|keywords:신청|empty_vi
+
+19. id=90 / 초등학교 / 건강·안전
+KO: 감염병에 걸리면 학교에 오지 말고 연락해 주세요
+VI:
+reason: category:건강·안전|terms:감염병|empty_vi
+
+20. id=98 / 유치원 / 준비물
+KO: 숲놀이 날 긴팔 옷과 모자를 준비해 주세요
+VI:
+reason: category:준비물|keywords:준비|empty_vi
+
+21. id=104 / 초등학교 / 건강·안전
+KO: 6월 첫째 주에 실종 유괴 예방교육을 합니다
+VI:
+reason: category:건강·안전|keywords:월|empty_vi
+
+22. id=106 / 유치원 / 건강·안전
+KO: 감기 증상이 있으면 등원 전에 선생님께 연락해 주세요
+VI:
+reason: category:건강·안전|terms:등원|keywords:등원
+
+23. id=111 / 초등학교 / 건강·안전
+KO: 건강검진 전날 밤 9시 뒤에는 간식을 먹지 않게 해 주세요
+VI:
+reason: category:건강·안전|terms:간식,건강검진
+
+24. id=130 / 초등학교 / 건강·안전
+KO: 아동학대 예방 안내문을 확인해 주세요
+VI:
+reason: category:건강·안전|terms:안내문|empty_vi
+
+25. id=131 / 초등학교 / 건강·안전
+KO: 시력검사 후 병원 진료가 필요하면 안내문을 확인해 주세요
+VI:
+reason: category:건강·안전|terms:안내문|empty_vi
+
+26. id=134 / 초등학교 / 제출
+KO: 오전 9시 30분까지 원격수업 출석을 확인해 주세요
+VI:
+reason: category:제출|keywords:까지|empty_vi
+
+27. id=136 / 유치원 / 제출
+KO: 참석 인원을 키즈노트로 알려 주세요
+VI:
+reason: category:제출|terms:키즈노트|empty_vi
+
+28. id=152 / 유치원 / 일정
+KO: 7월 5일에 유치원에서 물놀이를 합니다
+VI:
+reason: category:일정|keywords:월,일
+
+29. id=154 / 유치원 / 건강·안전
+KO: 동물 체험 전 손 씻기와 알레르기를 확인해 주세요
+VI:
+reason: category:건강·안전|terms:알레르기|empty_vi
+
+30. id=166 / 유치원 / 제출
+KO: 졸업여행 희망 조사를 키즈노트로 내 주세요
+VI:
+reason: category:제출|terms:키즈노트|empty_vi
