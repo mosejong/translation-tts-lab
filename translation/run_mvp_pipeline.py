@@ -43,7 +43,8 @@ def parse_args():
     parser.add_argument("--output-dir", default="")
     parser.add_argument("--lang", default=DEFAULT_LANGUAGE, choices=list(LANGUAGES.keys()))
     parser.add_argument("--device", default="cpu", choices=["cpu", "cuda"])
-    parser.add_argument("--max-length", type=int, default=128)
+    parser.add_argument("--max-input-tokens", type=int, default=384)
+    parser.add_argument("--max-output-tokens", type=int, default=512)
     parser.add_argument("--skip-tts", action="store_true")
     parser.add_argument("--tts-voice", default="")
     parser.add_argument("--save-demo-case", default="")
@@ -88,7 +89,13 @@ def main():
             if nllb_code is None:
                 translated_text = easy_ko_text
             else:
-                translated_text = translate(easy_ko_text, device, args.max_length, nllb_code)
+                translated_text = translate(
+                    easy_ko_text,
+                    device,
+                    args.max_input_tokens,
+                    args.max_output_tokens,
+                    nllb_code,
+                )
         except Exception as error:
             translated_text = ""
             write_error(output_dir / "translation_error.txt", error)
@@ -288,20 +295,40 @@ def split_sentences(text):
     return sentences if sentences else [normalized]
 
 
-def translate(text, device, max_length, target_lang_code):
+def split_for_translation(text, tokenizer, max_input_tokens):
+    sentences = split_sentences(text)
+    chunks = []
+    current = []
+    for sentence in sentences:
+        candidate = " ".join(current + [sentence]).strip()
+        token_count = len(tokenizer(candidate, add_special_tokens=True).input_ids)
+        if current and token_count > max_input_tokens:
+            chunks.append(" ".join(current))
+            current = [sentence]
+        else:
+            current.append(sentence)
+    if current:
+        chunks.append(" ".join(current))
+    return chunks
+
+
+def translate(text, device, max_input_tokens, max_output_tokens, target_lang_code):
     tokenizer = AutoTokenizer.from_pretrained(TRANSLATION_MODEL, src_lang=SOURCE_LANG)
     model = AutoModelForSeq2SeqLM.from_pretrained(TRANSLATION_MODEL).to(device)
     model.eval()
     target_lang_id = tokenizer.convert_tokens_to_ids(target_lang_code)
-    inputs = tokenizer(text, return_tensors="pt", truncation=True, max_length=max_length).to(device)
-    with torch.no_grad():
-        output_tokens = model.generate(
-            **inputs,
-            forced_bos_token_id=target_lang_id,
-            max_length=max_length,
-            num_beams=4,
-        )
-    return tokenizer.batch_decode(output_tokens, skip_special_tokens=True)[0]
+    outputs = []
+    for chunk in split_for_translation(text, tokenizer, max_input_tokens):
+        inputs = tokenizer(chunk, return_tensors="pt", truncation=True, max_length=max_input_tokens).to(device)
+        with torch.no_grad():
+            output_tokens = model.generate(
+                **inputs,
+                forced_bos_token_id=target_lang_id,
+                max_new_tokens=max_output_tokens,
+                num_beams=4,
+            )
+        outputs.append(tokenizer.batch_decode(output_tokens, skip_special_tokens=True)[0])
+    return "\n".join(outputs)
 
 
 def find_glossary_hits(text, glossary, lang="vi"):
@@ -573,4 +600,3 @@ def write_mvp_csv(path, row):
 
 if __name__ == "__main__":
     main()
-
