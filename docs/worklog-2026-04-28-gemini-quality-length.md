@@ -79,6 +79,34 @@
 
 ## 남은 확인
 
+완료:
+
 - 새 기준으로 `translation/run_quality_eval.py` 용어사전 전/후 평가 재실행.
-- 재평가 결과에서 100점 몰림이 사라졌는지 확인.
-- 발표 자료에는 "기존 100점은 평가 기준이 후한 1차 결과였고, 현지 상용 표현 기준을 추가해 재평가했다"고 설명 가능.
+- 100점 몰림이 사라졌는지 확인.
+  - 1차: NLLB 33.9점 -> 사전 적용 100.0점
+  - 보정 후: NLLB 39.0점 -> 사전 적용 89.6점
+- 개인 GitHub repo 반영 완료.
+  - `03402fd feat: 번역 품질평가 및 round-trip 검증 추가`
+  - `343d388 docs: 최신 번역 평가 흐름 정리`
+- 팀 프로젝트 repo에는 사용자가 직접 push/PR 진행하기로 함. Codex는 팀 repo push는 하지 않음.
+
+남은 작업:
+
+- 전체 A/B 18건에 대해 N02처럼 한국어 역번역 상세를 더 축적.
+- `장난 사용`, `어깨끈`, `안심벨`, `학생/아동` 등 실제 왜곡된 표현을 용어사전에 후보로 추가.
+- 발표 자료에는 "기존 100점은 평가 기준이 후한 1차 결과였고, 현지 상용 표현 + Round-trip 기준을 추가해 재평가했다"고 설명.
+- Android/백엔드 실제 시연에서 새 사전과 평가 결과가 문서화된 흐름과 맞는지 확인.
+
+## Claude 인계용 요약
+
+다음 작업자는 아래 파일부터 보면 된다.
+
+| 파일 | 용도 |
+|---|---|
+| `docs/share-summary-2026-04-28-quality-eval.md` | 팀 공유/PR/발표용 요약 |
+| `docs/worklog-2026-04-28-gemini-quality-length.md` | 상세 작업 로그 |
+| `translation/run_ab_compare.py` | A/B 속도 및 입력 단축 측정 |
+| `translation/run_ab_quality_eval.py` | A/B 품질평가 + Round-trip 검사 |
+| `translation/run_quality_eval.py` | 용어사전 전/후 품질평가 |
+| `translation/outputs/quality_eval/summary.md` | 용어사전 전/후 최종 결과 |
+| `translation/outputs/ab_quality_eval/vi/N02.md` | Round-trip 검사 예시 |
