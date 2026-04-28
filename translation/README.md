@@ -1,6 +1,29 @@
 # Translation Experiment
 
-한국어 가정통신문 문장을 베트남어로 번역하는 실험입니다.
+한국어 가정통신문 문장을 다국어로 번역하고, 학교 도메인 용어사전과 Gemini-as-Judge로 품질을 검증하는 실험입니다.
+
+## Current Scripts
+
+| Script | Purpose |
+| --- | --- |
+| `run_mvp_pipeline.py` | 쉬운 한국어 -> NLLB 번역 -> 용어사전 검수 -> TTS MVP 실행 |
+| `run_ab_compare.py` | A(원문 전체) vs B(TODO만) 입력량/속도 비교 |
+| `run_ab_quality_eval.py` | A/B 번역 품질 평가. 현지 자연스러움과 Round-trip 검사 포함 |
+| `run_glossary_compare.py` | NLLB 원번역의 용어사전 반영률 확인 |
+| `run_quality_eval.py` | 용어사전 전/후 품질 평가 |
+| `fill_glossary_all_langs.py` | 비어 있는 언어 컬럼을 Gemini로 채움 |
+| `validate_glossary_with_gemini.py` | 용어사전 항목 검수 |
+
+## Latest Result Snapshot
+
+| Metric | Result |
+| --- | ---: |
+| A/B 입력 단축 | -30.1% |
+| A/B 속도향상 | x1.84 |
+| A/B 품질평가 | A 45.8 / B 50.1 |
+| 용어사전 전/후 품질평가 | 39.0 -> 89.6 |
+
+공유용 요약은 `../docs/share-summary-2026-04-28-quality-eval.md`를 참고하세요.
 
 ## Base Model
 

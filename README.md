@@ -1,20 +1,30 @@
 # Translation TTS Lab
 
-학교/유치원 가정통신문을 다문화 가정 학부모가 이해하기 쉬운 베트남어 안내문과 음성으로 변환하는 모델 파이프라인 실험 폴더입니다.
+학교/유치원 가정통신문을 다문화 가정 학부모가 이해하기 쉬운 다국어 안내문과 음성으로 변환하는 모델 파이프라인 실험 폴더입니다.
 
 현재 목표는 번역 모델을 새로 학습시키는 것이 아니라, **사전학습 번역 모델 + 학교 특화 용어 사전 + 검수 루프 + TTS**를 확정하고 백엔드/앱에서 연결할 수 있는 입출력 형태로 준비하는 것입니다.
 
+## 2026-04-28 최신 상태
+
+- `term_glossary.csv`를 144개 학교 용어 × 8개 언어(vi/en/zh/th/ms/mn/ru/ja) wide format으로 확장했습니다.
+- NLLB 번역의 `max_length=256` 잘림 문제를 줄이기 위해 문장 단위 청크 번역을 추가했습니다.
+- Gemini 평가 기준을 강화해 기존 100점 몰림을 줄였습니다.
+- 현지 학부모 안내문에서 실제로 자주 쓰이는 표현인지, 학교 문맥에 맞는지, 정보가 보존되는지 평가합니다.
+- 번역문을 다시 한국어로 의미 역번역하는 Round-trip 검사를 추가해 누락/왜곡/환각을 잡습니다.
+- 공유용 요약: `docs/share-summary-2026-04-28-quality-eval.md`
+- 작업 로그: `docs/worklog-2026-04-28-gemini-quality-length.md`
+
 ## 파이프라인 한 줄 설명
 
-가정통신문 원문을 입력하면 핵심 내용을 쉬운 한국어로 정리하고, 베트남어 번역과 학교 용어 검수를 거쳐 음성 안내까지 생성합니다.
+가정통신문 원문을 입력하면 핵심 내용을 쉬운 한국어로 정리하고, 다국어 번역과 학교 용어 검수를 거쳐 음성 안내까지 생성합니다.
 
 ```text
 가정통신문 원문
 -> 베이스라인 분석/요약
 -> 쉬운 한국어 변환
--> Hugging Face NLLB 베트남어 번역
+-> Hugging Face NLLB 다국어 번역
 -> term_glossary.csv 기반 학교 용어 검수
--> 베트남어 TTS 음성 출력
+-> 대상 언어 TTS 음성 출력
 ```
 
 ## 담당 파트 구조
@@ -23,15 +33,15 @@
 
 ![번역·용어사전·검수 루프·TTS 담당 파트 구조](docs/assets/team-part-translation-glossary-tts.png)
 
-## 내일 전까지 확정할 것
+## 현재 확정한 것
 
 - 모델 실행 방식: Docker 기반 Python 파이프라인
 - 번역 모델: Hugging Face NLLB
-- TTS 모델: MMS-TTS Vietnamese
+- TTS: 언어별 Edge-TTS voice 매핑
 - 사전 파일: `translation/term_glossary.csv`
-- 백엔드 연결용 통합 결과: `outputs/mvp/mvp_result.csv`
-- 검수 표시 결과: `outputs/mvp/05_glossary_check.csv`
-- 음성 출력: `outputs/mvp/06_tts_output.wav`
+- 백엔드 연결용 통합 결과: `outputs/mvp/{lang}/mvp_result.csv`
+- 검수 표시 결과: `outputs/mvp/{lang}/05_glossary_check.csv`
+- 평가 근거: `translation/outputs/`
 
 ## 현재 핵심 포인트
 
@@ -39,7 +49,7 @@
 - 학교/유치원 가정통신문 특화 용어 사전 `translation/term_glossary.csv`를 구축했습니다.
 - 사전 용어가 번역문에 권장 베트남어로 반영되지 않으면 검수 대상으로 표시합니다.
 - Gemini API는 최종 번역기가 아니라, 추후 미등록 용어의 베트남어 초안 추천을 돕는 보조 도구로 둡니다.
-- 현재는 베트남어 MVP지만, 언어별 사전을 추가하면 중국어, 영어, 러시아어, 몽골어 등으로 확장할 수 있습니다.
+- 현재는 베트남어 중심으로 실험했지만, 사전과 TTS voice는 8개 언어 확장 기준으로 관리합니다.
 
 ## 기술 스택
 
@@ -47,7 +57,7 @@
 | --- | --- |
 | 실행 환경 | Python 3.11, Docker, Docker Compose |
 | 번역 모델 | Hugging Face Transformers, `facebook/nllb-200-distilled-600M` |
-| TTS 모델 | Hugging Face Transformers, `facebook/mms-tts-vie` |
+| TTS | Edge-TTS 언어별 voice |
 | 딥러닝 런타임 | PyTorch |
 | 음성 파일 저장 | SciPy WAV writer |
 | 데이터 처리 | CSV, JSON, Python 표준 라이브러리 |
@@ -63,7 +73,7 @@ translation-tts-lab/
   translation/          # 번역, 사전 검수, MVP 파이프라인 스크립트
   tts/                  # MMS-TTS 실험 스크립트
   docs/                 # 브리핑 및 설계 문서
-  outputs/              # 생성 결과물
+  outputs/              # 생성 결과물, 일부 중간 산출물은 git 제외
   models/               # Hugging Face 모델 캐시, git 제외
 ```
 
@@ -72,7 +82,7 @@ translation-tts-lab/
 Docker Desktop을 켠 뒤 실행합니다.
 
 ```cmd
-docker compose run --rm lab python translation/run_mvp_pipeline.py --input data/notice_sample_v3.csv --row-id 1 --output-dir outputs/mvp
+python translation/run_mvp_pipeline.py --input data/notice_sample_v3.csv --row-id 1 --lang vi --output-dir outputs/mvp/vi
 ```
 
 생성 결과는 백엔드 연결 시 필드 계약으로 사용할 수 있습니다.
@@ -82,20 +92,38 @@ docker compose run --rm lab python translation/run_mvp_pipeline.py --input data/
 | `outputs/mvp/01_input_notice.txt` | 입력 가정통신문 원문 |
 | `outputs/mvp/02_baseline_result.json` | 카테고리, 키워드, 사전 감지 결과 |
 | `outputs/mvp/03_easy_ko.txt` | 쉬운 한국어 문장 |
-| `outputs/mvp/04_vi_translation.txt` | 베트남어 번역 결과 |
+| `outputs/mvp/vi/04_translation.txt` | 대상 언어 번역 결과 |
 | `outputs/mvp/05_glossary_check.csv` | 학교 용어 검수 결과 |
-| `outputs/mvp/06_tts_output.wav` | 베트남어 음성 출력 |
-| `outputs/mvp/mvp_result.csv` | 전체 결과 통합 파일, 백엔드 연결 후보 |
+| `outputs/mvp/vi/05_tts_output.mp3` | 대상 언어 음성 출력 |
+| `outputs/mvp/vi/mvp_result.csv` | 전체 결과 통합 파일, 백엔드 연결 후보 |
 
 TTS를 생략하고 빠르게 확인하려면:
 
 ```cmd
-docker compose run --rm lab python translation/run_mvp_pipeline.py --input data/notice_sample_v3.csv --row-id 1 --output-dir outputs/mvp --skip-tts
+python translation/run_mvp_pipeline.py --input data/notice_sample_v3.csv --row-id 1 --lang vi --output-dir outputs/mvp/vi --skip-tts
 ```
+
+## 품질평가 재현
+
+```cmd
+python translation\run_ab_compare.py --lang vi --device cpu
+python translation\run_ab_quality_eval.py --lang vi
+python translation\run_glossary_compare.py --lang vi en zh th ja ru ms mn
+python translation\run_quality_eval.py
+```
+
+최근 재측정 요약:
+
+| 항목 | 결과 |
+| --- | ---: |
+| A/B 입력 단축 | -30.1% |
+| A/B 속도향상 | x1.84 |
+| A/B 품질평가 | A 45.8점 / B 50.1점 |
+| 용어사전 전/후 품질평가 | 39.0점 -> 89.6점 |
 
 ## 학교 용어 사전
 
-`translation/term_glossary.csv`는 학교/유치원 안내문에서 자주 등장하는 한국어 용어와 권장 베트남어 표현을 관리합니다.
+`translation/term_glossary.csv`는 학교/유치원 안내문에서 자주 등장하는 한국어 용어와 8개 언어 권장 표현을 관리합니다.
 
 예시:
 
