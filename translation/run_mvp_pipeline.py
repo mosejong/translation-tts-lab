@@ -340,6 +340,19 @@ def find_glossary_hits(text, glossary, lang="vi"):
     ]
 
 
+def inject_glossary_terms(text, glossary_hits):
+    """번역 전 한국어 텍스트에 사전 용어를 괄호로 주입.
+    NLLB가 괄호 안 표현을 그대로 유지하는 경향을 이용해 올바른 번역어를 유도.
+    예: '전세버스' → '전세버스(xe buýt thuê)'
+    """
+    # 긴 용어 먼저 처리해서 부분 치환 충돌 방지
+    for hit in sorted(glossary_hits, key=lambda h: len(h["korean"]), reverse=True):
+        korean = hit["korean"]
+        preferred = hit["preferred_term"]
+        text = text.replace(korean, f"{korean}({preferred})")
+    return text
+
+
 def check_quality(translated_text, glossary_hits):
     rows = build_glossary_check_rows("", translated_text, glossary_hits)
     return summarize_quality(rows)
