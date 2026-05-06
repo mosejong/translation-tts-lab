@@ -11,6 +11,7 @@ from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
 from languages import DEFAULT_LANGUAGE, LANGUAGES
 from gemini_helper import suggest_missing_terms
+from postprocess_vi import apply_vi_postprocess
 
 
 TRANSLATION_MODEL = "facebook/nllb-200-distilled-600M"
@@ -101,6 +102,8 @@ def main():
             write_error(output_dir / "translation_error.txt", error)
     else:
         translated_text = ""
+    if args.lang == "vi" and translated_text:
+        translated_text = apply_vi_postprocess(easy_ko_text, translated_text)
     (output_dir / "04_translation.txt").write_text(translated_text + "\n", encoding="utf-8")
 
     try:

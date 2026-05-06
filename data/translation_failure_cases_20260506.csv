@@ -1,0 +1,4 @@
+﻿case_id,source_type,text_ko,target_lang,raw_translation,post_processed_translation,problem_type,term_or_slot,expected_fix,status,note
+FAIL-001,sample,,vi,,,semantic_drift,,needs manual review,open,
+FAIL-002,sample,,vi,,,repetition,,needs manual review,open,
+FAIL-003,sample,,vi,,,slot_loss,date/time/amount,preserve extracted slot,open,
