@@ -33,3 +33,23 @@ Recommended next step:
 2. Mark `winner` and `note`.
 3. If SMaLL-100 loses most rows due to semantic drift/repetition, drop it as the fine-tuning base and test another lightweight candidate.
 4. Keep NLLB as the baseline/service model until a lightweight model proves acceptable quality.
+
+## Manual Review Conclusion
+
+Manual review marks all 20 sample rows as `winner = nllb`.
+
+SMaLL-100 is useful as a lightweight comparison point because it is faster, but it is not reliable enough for service use in its original state. Repetition and semantic drift appear in several rows, especially:
+
+- `SCHOOL-KO-005`: repeated `Loi bai hat`
+- `SCHOOL-KO-006`: repeated education-related wording
+- `SCHOOL-KO-010`: repeated `Chuong trinh giang day`
+- `SCHOOL-KO-018`: repeated `Hoc sinh`
+
+Short-term MVP strategy:
+
+1. Keep NLLB as the service baseline.
+2. Use model-1/core sentence extraction to reduce translation input.
+3. Preserve dates, amounts, deadlines, targets, and submission fields through slots.
+4. Keep glossary injection and add post-processing checks for known school-domain terms.
+5. Treat LoRA/fine-tuning as a later experiment track, not the current demo implementation.
+
