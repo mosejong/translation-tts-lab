@@ -61,6 +61,11 @@ def parse_args():
     parser.add_argument("--models", nargs="+", default=["nllb", "small100"], choices=["nllb", "small100"])
     parser.add_argument("--max-new-tokens", type=int, default=160)
     parser.add_argument("--num-beams", type=int, default=4)
+    parser.add_argument("--repetition-penalty", type=float, default=1.3)
+    parser.add_argument("--no-repeat-ngram-size", type=int, default=3)
+    parser.add_argument("--length-penalty", type=float, default=1.0)
+    parser.add_argument("--slot-test", action="store_true",
+                        help="Run __SLOT0__ placeholder survival check before main eval")
     return parser.parse_args()
 
 
@@ -75,6 +80,18 @@ def main():
         translators["nllb"] = load_nllb(device, args.target_lang)
     if "small100" in args.models:
         translators["small100"] = load_small100(device, args.target_lang)
+
+    gen_kwargs = {
+        "max_new_tokens": args.max_new_tokens,
+        "num_beams": args.num_beams,
+        "repetition_penalty": args.repetition_penalty,
+        "no_repeat_ngram_size": args.no_repeat_ngram_size,
+        "length_penalty": args.length_penalty,
+    }
+    print(f"Generation params: {gen_kwargs}")
+
+    if args.slot_test:
+        run_slot_survival_test(translators, gen_kwargs)
 
     output_rows = []
     for idx, row in enumerate(rows, start=1):
@@ -94,14 +111,12 @@ def main():
             "note": "",
         }
         for name, translator in translators.items():
-            translated, elapsed = translator.translate(
-                text,
-                max_new_tokens=args.max_new_tokens,
-                num_beams=args.num_beams,
-            )
+            translated, elapsed = translator.translate(text, **gen_kwargs)
+            repeat_flag = _detect_repetition(translated)
             out[f"{name}_translation"] = translated
             out[f"{name}_time_sec"] = f"{elapsed:.3f}"
-            print(f"  - {name}: {elapsed:.2f}s | {translated[:90]}")
+            flag = " [REPEAT]" if repeat_flag else ""
+            print(f"  - {name}: {elapsed:.2f}s{flag} | {translated[:90]}")
         output_rows.append(out)
 
     write_csv(args.output, output_rows)
@@ -115,7 +130,8 @@ class NllbTranslator:
         self.device = device
         self.target_id = tokenizer.convert_tokens_to_ids(NLLB_LANG[target_lang])
 
-    def translate(self, text, max_new_tokens=160, num_beams=4):
+    def translate(self, text, max_new_tokens=160, num_beams=4,
+                  repetition_penalty=1.3, no_repeat_ngram_size=3, length_penalty=1.0):
         inputs = self.tokenizer(text, return_tensors="pt", truncation=True, max_length=384).to(self.device)
         start = time.perf_counter()
         with torch.no_grad():
@@ -124,6 +140,9 @@ class NllbTranslator:
                 forced_bos_token_id=self.target_id,
                 max_new_tokens=max_new_tokens,
                 num_beams=num_beams,
+                repetition_penalty=repetition_penalty,
+                no_repeat_ngram_size=no_repeat_ngram_size,
+                length_penalty=length_penalty,
             )
         elapsed = time.perf_counter() - start
         return self.tokenizer.batch_decode(tokens, skip_special_tokens=True)[0], elapsed
@@ -138,7 +157,8 @@ class Small100Translator:
         self.tokenizer.src_lang = "ko"
         self.tokenizer.tgt_lang = self.target_lang
 
-    def translate(self, text, max_new_tokens=160, num_beams=4):
+    def translate(self, text, max_new_tokens=160, num_beams=4,
+                  repetition_penalty=1.3, no_repeat_ngram_size=3, length_penalty=1.0):
         self.tokenizer.src_lang = "ko"
         self.tokenizer.tgt_lang = self.target_lang
         inputs = self.tokenizer(text, return_tensors="pt", truncation=True, max_length=384).to(self.device)
@@ -148,9 +168,44 @@ class Small100Translator:
                 **inputs,
                 max_new_tokens=max_new_tokens,
                 num_beams=num_beams,
+                repetition_penalty=repetition_penalty,
+                no_repeat_ngram_size=no_repeat_ngram_size,
+                length_penalty=length_penalty,
             )
         elapsed = time.perf_counter() - start
         return self.tokenizer.batch_decode(tokens, skip_special_tokens=True)[0], elapsed
+
+
+SLOT_TEST_SAMPLES = [
+    ("신청은 __SLOT0__ 에서 문의는 __SLOT1__", ["__SLOT0__", "__SLOT1__"]),
+    ("__SLOT0__까지 제출해 주세요", ["__SLOT0__"]),
+    ("참가비 __SLOT0__ 납부", ["__SLOT0__"]),
+]
+
+
+def _detect_repetition(text: str) -> bool:
+    if len(text) < 20:
+        return False
+    prefix = text[:20]
+    return text.count(prefix) > 3
+
+
+def run_slot_survival_test(translators: dict, gen_kwargs: dict) -> None:
+    print("\n── Slot placeholder survival test ──")
+    all_pass = True
+    for text, expected_slots in SLOT_TEST_SAMPLES:
+        for name, translator in translators.items():
+            result, _ = translator.translate(text, **gen_kwargs)
+            passed = all(slot in result for slot in expected_slots)
+            status = "PASS" if passed else "FAIL"
+            if not passed:
+                all_pass = False
+            print(f"  [{status}] {name} | in={text!r} | out={result!r}")
+    if not all_pass:
+        print("  WARNING: slot survival failed — service integration NOT safe for this model.")
+    else:
+        print("  All slots survived.")
+    print()
 
 
 def configure_cache():

@@ -90,8 +90,10 @@ def main():
             if nllb_code is None:
                 translated_text = easy_ko_text
             else:
+                pre_hits = find_glossary_hits(easy_ko_text, glossary, args.lang)
+                text_for_nllb = inject_glossary_terms(easy_ko_text, pre_hits) if pre_hits else easy_ko_text
                 translated_text = translate(
-                    easy_ko_text,
+                    text_for_nllb,
                     device,
                     args.max_input_tokens,
                     args.max_output_tokens,
