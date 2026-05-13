@@ -8,6 +8,10 @@
 
 SchoolBridge의 번역 파트는 "NLLB로 번역했다"에서 멈추지 않고, 학교 안내문에서 실제 행동 오류로 이어질 수 있는 값을 보호하는 구조로 설계했다.
 
+![SchoolBridge 전체 파이프라인](assets/schoolbridge-overall-pipeline.png)
+
+![NLLB 핵심 정보 보존 파이프라인](assets/nllb-slot-protection-pipeline.png)
+
 | 구성 | 역할 |
 | --- | --- |
 | Slot Protection | 날짜, 금액, URL, 전화번호를 `__SLOT0__` 형태로 격리한 뒤 번역 후 복원 |
@@ -41,6 +45,8 @@ SchoolBridge의 번역 파트는 "NLLB로 번역했다"에서 멈추지 않고, 
 - p18 흐름도 2번 박스는 `미등록 용어 감지`가 끝까지 보이도록 수정할 필요가 있다.
 
 ## 다음에 보강할 것
+
+![미등록 용어 자동 감지 루프](assets/unknown-term-detection-loop.png)
 
 - 발표용 흐름도: 입력 문장 -> slot mask -> glossary/template decision -> NLLB fallback -> restore -> TTS까지 한 장으로 정리
 - 재현성: 최종 수치(`17/17`, `21/21`, `89.6`)가 어떤 스크립트와 산출물에서 나왔는지 README에 링크

@@ -38,9 +38,11 @@ SchoolBridge 1차 프로젝트에서 번역/TTS 파트는 단순 NLLB 호출이 
 
 ## 담당 파트 구조
 
-아래 이미지는 번역, 용어사전, 검수 루프, TTS가 어떻게 연결되는지 한 장으로 정리한 구조도입니다.
+아래 이미지는 전체 서비스 파이프라인과 번역, 용어사전, 검수 루프, TTS가 어떻게 연결되는지 정리한 구조도입니다.
 
-![번역·용어사전·검수 루프·TTS 담당 파트 구조](docs/assets/team-part-translation-glossary-tts.png)
+![SchoolBridge 전체 파이프라인](docs/assets/schoolbridge-overall-pipeline.png)
+
+![NLLB 핵심 정보 보존 파이프라인](docs/assets/nllb-slot-protection-pipeline.png)
 
 ## 현재 확정한 것
 
