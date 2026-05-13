@@ -7,6 +7,7 @@ Translation TTS Lab의 번역/TTS 실험 문서를 정리하는 폴더입니다.
 | File | Purpose |
 | --- | --- |
 | `translation-model-strategy-2026-05-07.md` | NLLB 유지, SMaLL-100 비교, slot/template 번역 전략 최종 정리 |
+| `final-presentation-retrospective-2026-05-13.md` | 최종 발표 이후 번역/TTS 파트 성과, 피드백, 다음 보강점 |
 | `nllb_vs_small100_result.md` | NLLB와 SMaLL-100 비교 실험 결과 |
 | `small100_retest_plan.md` | SMaLL-100 재실험 계획 |
 | `slot_protected_translation.md` | 날짜/시간/금액/URL/전화번호 보호 번역 설계 |
@@ -23,6 +24,7 @@ Gemini/API 번역 전면 교체는 하지 않음
 핵심 정보는 slot으로 보호
 준비물/제출물 문장은 template translation 적용
 일반 설명문만 NLLB fallback
+최종 발표 지표: 용어 보존 17/17, 슬롯 복원 21/21, 번역 품질 89.6
 ```
 
 ## OCR 문서 위치

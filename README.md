@@ -4,15 +4,24 @@
 
 현재 목표는 번역 모델을 새로 학습시키는 것이 아니라, **사전학습 번역 모델 + 학교 특화 용어 사전 + 검수 루프 + TTS**를 확정하고 백엔드/앱에서 연결할 수 있는 입출력 형태로 준비하는 것입니다.
 
-## 2026-04-28 최신 상태
+## 2026-05-13 최종 발표 상태
 
-- `term_glossary.csv`를 144개 학교 용어 × 8개 언어(vi/en/zh/th/ms/mn/ru/ja) wide format으로 확장했습니다.
-- NLLB 번역의 `max_length=256` 잘림 문제를 줄이기 위해 문장 단위 청크 번역을 추가했습니다.
-- Gemini 평가 기준을 강화해 기존 100점 몰림을 줄였습니다.
-- 현지 학부모 안내문에서 실제로 자주 쓰이는 표현인지, 학교 문맥에 맞는지, 정보가 보존되는지 평가합니다.
-- 번역문을 다시 한국어로 의미 역번역하는 Round-trip 검사를 추가해 누락/왜곡/환각을 잡습니다.
-- 공유용 요약: `docs/share-summary-2026-04-28-quality-eval.md`
-- 작업 로그: `docs/worklog-2026-04-28-gemini-quality-length.md`
+SchoolBridge 1차 프로젝트에서 번역/TTS 파트는 단순 NLLB 호출이 아니라, 학교 안내문에서 중요한 사실값과 도메인 용어를 보존하는 안전장치 중심으로 정리했습니다.
+
+- 번역 모델: `facebook/nllb-200-distilled-600M`
+- 적용 구조: Slot Protection, Glossary Injection, Template-based translation, 미등록 용어 감지 루프
+- 학교 용어 보존: `1/17 -> 17/17` (확장 테스트 `37/37`)
+- 슬롯 복원: `21/21 PASS`
+- 번역 품질 평가: `39.0 -> 89.6`
+- 자체 테스트: `125+ ALL PASS`
+- 발표 피드백: 슬롯, 마스킹, 인젝션, 템플릿 구현 구조가 실제 서비스 문제를 잘 잡았다는 평가를 받음
+
+관련 문서:
+
+- `docs/final-presentation-retrospective-2026-05-13.md`
+- `docs/slot_protected_translation.md`
+- `docs/template_translation_controlled_experiment_20260506.md`
+- `docs/presentation-evidence.md`
 
 ## 파이프라인 한 줄 설명
 
@@ -42,11 +51,14 @@
 - 백엔드 연결용 통합 결과: `outputs/mvp/{lang}/mvp_result.csv`
 - 검수 표시 결과: `outputs/mvp/{lang}/05_glossary_check.csv`
 - 평가 근거: `translation/outputs/`
+- 최종 발표 지표: 용어 보존 `17/17`, 슬롯 복원 `21/21`, 품질 점수 `89.6`
 
 ## 현재 핵심 포인트
 
 - Hugging Face의 사전학습 번역 모델 `facebook/nllb-200-distilled-600M`을 베이스라인으로 사용합니다.
-- 학교/유치원 가정통신문 특화 용어 사전 `translation/term_glossary.csv`를 구축했습니다.
+- 날짜, 금액, URL, 전화번호는 `__SLOT0__` 형식으로 마스킹해 NLLB가 변형하지 못하게 보호합니다.
+- 학교/유치원 도메인 용어는 glossary injection 또는 템플릿 번역으로 고정합니다.
+- 준비물/제출물처럼 반복되는 행동 문장은 NLLB 자유 번역보다 template-based translation을 우선합니다.
 - 사전 용어가 번역문에 권장 베트남어로 반영되지 않으면 검수 대상으로 표시합니다.
 - Gemini API는 최종 번역기가 아니라, 추후 미등록 용어의 베트남어 초안 추천을 돕는 보조 도구로 둡니다.
 - 현재는 베트남어 중심으로 실험했지만, 사전과 TTS voice는 8개 언어 확장 기준으로 관리합니다.
@@ -224,10 +236,14 @@ API로 붙일 때는 같은 구조를 JSON으로 반환하면 됩니다.
 
 ## 문서
 
-전체 방향 요약은 아래 문서에 정리했습니다.
+전체 방향과 최종 발표 근거는 아래 문서에 정리했습니다.
 
 ```text
+docs/final-presentation-retrospective-2026-05-13.md
 docs/mvp_briefing.md
+docs/presentation-evidence.md
+docs/slot_protected_translation.md
+docs/template_translation_controlled_experiment_20260506.md
 ```
 
 핵심 메시지:
@@ -236,11 +252,10 @@ docs/mvp_briefing.md
 
 ## 다음 작업
 
-1. 실제 가정통신문 샘플을 더 넣어 E2E 반복 실행
-2. 백엔드에서 `run_mvp_pipeline.py` 호출 또는 내부 함수화
-3. `mvp_result.csv` 구조를 API 응답 JSON으로 변환
-4. 앱에서 `vi_text`, `quality_label`, `tts_path` 표시
-5. 미등록 용어는 후보 추출 후 사전 확장
+1. 발표자료 p18의 "미등록 용어 감지" 흐름도 텍스트 잘림 보정
+2. 최종 발표 지표와 실제 재현 스크립트 연결 정리
+3. 실제 가정통신문 샘플을 더 넣어 E2E 반복 실행
+4. 미등록 용어는 후보 추출 후 사전 확장
 
 ## 현재 한계
 
