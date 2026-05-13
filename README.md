@@ -1,8 +1,8 @@
 # Translation TTS Lab
 
-> 외부 AI API에 핵심 로직을 맡기기보다, 통제 가능한 AI 파이프라인으로 서비스 품질을 지키는 구조를 설계합니다.
+> 빠른 AI API 호출보다, 서비스 품질을 통제할 수 있는 AI 파이프라인을 설계하는 개발자를 지향합니다.
 
-SchoolBridge 팀 프로젝트에서 가정통신문 번역/TTS 파트의 품질을 검증하기 위해 만든 개인 실험 레포입니다. GPT/Gemini 같은 생성형 AI API를 메인 번역기로 사용할 수도 있었지만, 프로젝트의 핵심을 외부 API 결과에 의존시키지 않고 `facebook/nllb-200-distilled-600M` 기반 파이프라인으로 유지했습니다.
+SchoolBridge 팀 프로젝트에서 가정통신문 번역/TTS 파트의 품질을 검증한 개인 실험 레포입니다. GPT/Gemini 같은 생성형 AI API를 메인 번역기로 사용할 수도 있었지만, 프로젝트의 핵심을 외부 API 결과에 의존시키지 않고 `facebook/nllb-200-distilled-600M` 기반 파이프라인으로 유지했습니다.
 
 이 레포에서 검증한 핵심은 **NLLB 번역 모델을 그대로 쓰지 않고, Slot Protection, Glossary Injection, Template-based Translation, 검수 루프를 조합해 날짜·금액·URL·전화번호·학교 용어처럼 틀리면 안 되는 정보를 보호하는 구조**입니다.
 
@@ -204,7 +204,7 @@ TTS를 생략하고 빠르게 확인:
 python translation/run_mvp_pipeline.py --input data/notice_sample_v3.csv --row-id 1 --lang vi --output-dir outputs/mvp/vi --skip-tts
 ```
 
-미등록 용어 감지와 glossary 확장은 최종 MVP에서 사용할 운영 루프로 정리했습니다. 현재 레포에는 `translation/term_glossary.csv`, `translation/fill_glossary_all_langs.py`, `translation/validate_glossary_with_gemini.py` 등 사전 확장과 검증을 위한 실험 코드가 남아 있습니다.
+미등록 용어 감지와 glossary 확장은 최종 MVP 이후에도 확장 가능한 운영 루프 형태로 정리했습니다. 현재 레포에는 `translation/term_glossary.csv`, `translation/fill_glossary_all_langs.py`, `translation/validate_glossary_with_gemini.py` 등 사전 확장과 검증을 위한 실험 코드가 남아 있습니다.
 
 ## 실험 결과 재현
 
@@ -260,5 +260,6 @@ translation-tts-lab/
 - NLLB 원본 번역은 학교 문맥 용어를 안정적으로 처리하지 못하므로, glossary와 template 보정이 계속 필요합니다.
 - 사전 검수는 문자열 포함 여부 기반이라 표현 변형을 완벽히 잡지는 못합니다.
 - `term_glossary.csv`는 새로운 학교 안내문을 볼수록 사람이 검수하며 확장해야 합니다.
+- 9개 언어 지원을 차별점으로 제시했지만, 성능 평가는 베트남어와 한국어 기준 모델 지표에 더 집중되었습니다. 다음 프로젝트에서는 지원 언어별 번역 품질 검증을 초기 평가 설계에 포함해야 합니다.
 - 현재 실험은 베트남어 중심으로 검증했으며, 8개 언어 확장을 위해 언어별 사전과 TTS 품질 검증이 더 필요합니다.
 - 최종 MVP는 Edge-TTS 기준으로 정리했지만, `tts/`의 MMS-TTS 코드는 초기 실험 기록으로 남아 있습니다.
