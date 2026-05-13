@@ -1,145 +1,61 @@
 # Translation TTS Lab
 
-학교/유치원 가정통신문을 다문화 가정 학부모가 이해하기 쉬운 다국어 안내문과 음성으로 변환하는 모델 파이프라인 실험 폴더입니다.
+SchoolBridge 팀 프로젝트에서 가정통신문 번역/TTS 파트의 품질을 검증하기 위해 만든 개인 실험 레포입니다. 단순히 TTS를 생성하는 저장소가 아니라, 학교 안내문 번역에서 날짜, 금액, URL, 전화번호, 학교 용어처럼 학부모 행동에 직접 영향을 주는 정보를 어떻게 보존할지 실험하고 정리했습니다.
 
-현재 목표는 번역 모델을 새로 학습시키는 것이 아니라, **사전학습 번역 모델 + 학교 특화 용어 사전 + 검수 루프 + TTS**를 확정하고 백엔드/앱에서 연결할 수 있는 입출력 형태로 준비하는 것입니다.
-
-## 2026-05-13 최종 발표 상태
-
-SchoolBridge 1차 프로젝트에서 번역/TTS 파트는 단순 NLLB 호출이 아니라, 학교 안내문에서 중요한 사실값과 도메인 용어를 보존하는 안전장치 중심으로 정리했습니다.
-
-- 번역 모델: `facebook/nllb-200-distilled-600M`
-- 적용 구조: Slot Protection, Glossary Injection, Template-based translation, 미등록 용어 감지 루프
-- 학교 용어 보존: `1/17 -> 17/17` (확장 테스트 `37/37`)
-- 슬롯 복원: `21/21 PASS`
-- 번역 품질 평가: `39.0 -> 89.6`
-- 자체 테스트: `125+ ALL PASS`
-- 발표 피드백: 슬롯, 마스킹, 인젝션, 템플릿 구현 구조가 실제 서비스 문제를 잘 잡았다는 평가를 받음
-
-관련 문서:
-
-- `docs/final-presentation-retrospective-2026-05-13.md`
-- `docs/slot_protected_translation.md`
-- `docs/template_translation_controlled_experiment_20260506.md`
-- `docs/presentation-evidence.md`
-
-## 파이프라인 한 줄 설명
-
-가정통신문 원문을 입력하면 핵심 내용을 쉬운 한국어로 정리하고, 다국어 번역과 학교 용어 검수를 거쳐 음성 안내까지 생성합니다.
-
-```text
-가정통신문 원문
--> 베이스라인 분석/요약
--> 쉬운 한국어 변환
--> Hugging Face NLLB 다국어 번역
--> term_glossary.csv 기반 학교 용어 검수
--> 대상 언어 TTS 음성 출력
-```
-
-## 담당 파트 구조
-
-아래 이미지는 전체 서비스 파이프라인과 번역, 용어사전, 검수 루프, TTS가 어떻게 연결되는지 정리한 구조도입니다.
+이 레포에서 검증한 핵심은 **NLLB 번역 모델을 그대로 쓰지 않고, Slot Protection, Glossary Injection, Template-based Translation, 검수 루프를 조합해 핵심 정보 손실과 도메인 용어 오역을 줄이는 구조**입니다.
 
 ![SchoolBridge 전체 파이프라인](docs/assets/schoolbridge-overall-pipeline.png)
 
-![NLLB 핵심 정보 보존 파이프라인](docs/assets/nllb-slot-protection-pipeline.png)
+## 프로젝트 목적
 
-## 현재 확정한 것
+다문화 가정 학부모가 학교 가정통신문을 이해하고 바로 행동할 수 있도록, 한국어 안내문을 쉬운 한국어와 대상 언어 번역문, 음성 안내로 변환하는 파이프라인을 검증했습니다.
 
-- 모델 실행 방식: Docker 기반 Python 파이프라인
-- 번역 모델: Hugging Face NLLB
-- TTS: 언어별 Edge-TTS voice 매핑
-- 사전 파일: `translation/term_glossary.csv`
-- 백엔드 연결용 통합 결과: `outputs/mvp/{lang}/mvp_result.csv`
-- 검수 표시 결과: `outputs/mvp/{lang}/05_glossary_check.csv`
-- 평가 근거: `translation/outputs/`
-- 최종 발표 지표: 용어 보존 `17/17`, 슬롯 복원 `21/21`, 품질 점수 `89.6`
+프로젝트의 초점은 번역 모델 자체를 새로 학습시키는 것이 아니라, 사전학습 번역 모델인 `facebook/nllb-200-distilled-600M` 위에 학교 도메인 안전장치를 얹어 서비스에 사용할 수 있는 입출력 구조를 만드는 것이었습니다.
 
-## 현재 핵심 포인트
-
-- Hugging Face의 사전학습 번역 모델 `facebook/nllb-200-distilled-600M`을 베이스라인으로 사용합니다.
-- 날짜, 금액, URL, 전화번호는 `__SLOT0__` 형식으로 마스킹해 NLLB가 변형하지 못하게 보호합니다.
-- 학교/유치원 도메인 용어는 glossary injection 또는 템플릿 번역으로 고정합니다.
-- 준비물/제출물처럼 반복되는 행동 문장은 NLLB 자유 번역보다 template-based translation을 우선합니다.
-- 사전 용어가 번역문에 권장 베트남어로 반영되지 않으면 검수 대상으로 표시합니다.
-- Gemini API는 최종 번역기가 아니라, 추후 미등록 용어의 베트남어 초안 추천을 돕는 보조 도구로 둡니다.
-- 현재는 베트남어 중심으로 실험했지만, 사전과 TTS voice는 8개 언어 확장 기준으로 관리합니다.
-
-## 기술 스택
-
-| 영역 | 사용 기술 |
-| --- | --- |
-| 실행 환경 | Python 3.11, Docker, Docker Compose |
-| 번역 모델 | Hugging Face Transformers, `facebook/nllb-200-distilled-600M` |
-| TTS | Edge-TTS 언어별 voice |
-| 딥러닝 런타임 | PyTorch |
-| 음성 파일 저장 | SciPy WAV writer |
-| 데이터 처리 | CSV, JSON, Python 표준 라이브러리 |
-| 용어 사전 | `translation/term_glossary.csv` |
-| 검수 루프 | `glossary_hits`, `quality_label`, `glossary_check.csv` |
-| 추후 보조 API | Gemini API, 미등록 용어 번역 초안 추천용 |
-
-## 폴더 구조
-
-```text
-translation-tts-lab/
-  data/                 # 가정통신문 샘플 CSV
-  translation/          # 번역, 사전 검수, MVP 파이프라인 스크립트
-  tts/                  # MMS-TTS 실험 스크립트
-  docs/                 # 브리핑 및 설계 문서
-  outputs/              # 생성 결과물, 일부 중간 산출물은 git 제외
-  models/               # Hugging Face 모델 캐시, git 제외
-```
-
-## E2E 실행
-
-Docker Desktop을 켠 뒤 실행합니다.
-
-```cmd
-python translation/run_mvp_pipeline.py --input data/notice_sample_v3.csv --row-id 1 --lang vi --output-dir outputs/mvp/vi
-```
-
-생성 결과는 백엔드 연결 시 필드 계약으로 사용할 수 있습니다.
-
-| File | 설명 |
-| --- | --- |
-| `outputs/mvp/01_input_notice.txt` | 입력 가정통신문 원문 |
-| `outputs/mvp/02_baseline_result.json` | 카테고리, 키워드, 사전 감지 결과 |
-| `outputs/mvp/03_easy_ko.txt` | 쉬운 한국어 문장 |
-| `outputs/mvp/vi/04_translation.txt` | 대상 언어 번역 결과 |
-| `outputs/mvp/05_glossary_check.csv` | 학교 용어 검수 결과 |
-| `outputs/mvp/vi/05_tts_output.mp3` | 대상 언어 음성 출력 |
-| `outputs/mvp/vi/mvp_result.csv` | 전체 결과 통합 파일, 백엔드 연결 후보 |
-
-TTS를 생략하고 빠르게 확인하려면:
-
-```cmd
-python translation/run_mvp_pipeline.py --input data/notice_sample_v3.csv --row-id 1 --lang vi --output-dir outputs/mvp/vi --skip-tts
-```
-
-## 품질평가 재현
-
-```cmd
-python translation\run_ab_compare.py --lang vi --device cpu
-python translation\run_ab_quality_eval.py --lang vi
-python translation\run_glossary_compare.py --lang vi en zh th ja ru ms mn
-python translation\run_quality_eval.py
-```
-
-최근 재측정 요약:
+## 핵심 성과
 
 | 항목 | 결과 |
 | --- | ---: |
-| A/B 입력 단축 | -30.1% |
-| A/B 속도향상 | x1.84 |
-| A/B 품질평가 | A 45.8점 / B 50.1점 |
-| 용어사전 전/후 품질평가 | 39.0점 -> 89.6점 |
+| 학교 용어 보존 | `1/17 -> 17/17` |
+| 확장 용어 테스트 | `37/37 PASS` |
+| 슬롯 복원 | `21/21 PASS` |
+| 번역 품질 평가 | `39.0 -> 89.6` |
+| 자체 테스트 | `125+ ALL PASS` |
 
-## 학교 용어 사전
+## 문제 정의
 
-`translation/term_glossary.csv`는 학교/유치원 안내문에서 자주 등장하는 한국어 용어와 8개 언어 권장 표현을 관리합니다.
+일반 번역 모델은 학교 안내문에서 다음 정보를 안정적으로 보존하지 못할 수 있습니다.
 
-예시:
+| 문제 | 예시 |
+| --- | --- |
+| 날짜/시간 변형 | `5월 9일(금)` 같은 일정 정보가 대상 언어에서 불안정하게 표현됨 |
+| 금액 오역 | `40,000원`이 사람 수나 다른 통화처럼 해석될 수 있음 |
+| URL/전화번호 손실 | 링크, 전화번호가 토큰화 과정에서 깨지거나 누락됨 |
+| 학교 용어 오역 | `리코더`, `클리어 화일`, `원복`, `스쿨뱅킹` 같은 표현이 일반 의미로 번역됨 |
+| 준비물/제출물 누락 | 학부모가 실제로 해야 할 행동 정보가 번역문에서 약해짐 |
+
+따라서 이 레포는 "번역이 자연스러운가"뿐 아니라 "중요한 값과 학교 용어가 보존되는가"를 중심으로 실험했습니다.
+
+## 해결 전략
+
+![NLLB 핵심 정보 보존 파이프라인](docs/assets/nllb-slot-protection-pipeline.png)
+
+### Slot Protection
+
+날짜, 금액, URL, 전화번호처럼 원문 값이 보존되어야 하는 정보는 NLLB 입력 전에 `__SLOT0__` 형태로 마스킹하고, 번역 후 원문 값 또는 언어별 포맷으로 복원합니다.
+
+초기에는 특수문자 placeholder를 실험했지만 NLLB SentencePiece 토크나이저에서 깨지는 문제가 있어, ASCII 기반 슬롯 형식으로 전환했습니다.
+
+```text
+5월 9일(금)까지 신청서를 제출해 주세요
+-> __SLOT0__까지 신청서를 제출해 주세요
+-> NLLB 번역
+-> 날짜 슬롯 복원
+```
+
+### Glossary Injection
+
+학교/유치원 안내문에 자주 등장하는 도메인 용어를 `translation/term_glossary.csv`에 관리합니다. 번역 전후에 사전 용어가 권장 표현으로 반영되는지 확인하고, 누락되면 검수 대상으로 표시합니다.
 
 | Korean | Preferred Vietnamese | 용도 |
 | --- | --- | --- |
@@ -153,75 +69,95 @@ python translation\run_quality_eval.py
 
 | Label | 의미 |
 | --- | --- |
-| `ok` | 입력문에 나온 사전 용어가 번역문에도 권장 베트남어로 반영됨 |
+| `ok` | 입력문에 나온 사전 용어가 번역문에도 권장 표현으로 반영됨 |
 | `missing_term` | 입력문에 사전 용어가 있었지만 번역문에 권장어가 없음 |
 | `unchecked` | 사전 용어가 없어 자동 판단 불가 |
 | `review_needed` | 사람이 확인해야 하는 항목 |
 
-## 사전 확장 루프
+### Template-based Translation
 
-새로운 가정통신문이 들어오면 미등록 용어 후보를 추출하고, 사람이 검수한 뒤 사전에 추가합니다.
+준비물, 제출물, 납부 안내처럼 학교 안내문에서 반복되는 행동 문장은 자유 번역보다 템플릿 기반 번역을 우선합니다.
 
-```cmd
-python translation/extract_glossary_candidates.py --input data/notice_sample_v3.csv --output outputs/translation/glossary_candidates.csv
-```
-
-추후 Gemini API는 아래처럼 보조 도구로만 사용합니다.
+이 방식은 문장을 먼저 구조화한 뒤, 대상/준비물/제출 대상/기한 같은 요소를 분리해 번역합니다. NLLB가 짧은 명사구를 잘못 해석하는 문제를 줄이고, 학부모가 해야 할 행동을 더 명확하게 전달하기 위한 전략입니다.
 
 ```text
-미등록 용어 후보 추출
--> Gemini가 베트남어 초안 추천
--> 사람이 검수
--> 승인된 표현만 term_glossary.csv에 추가
+원문 문장
+-> 문장 유형 분류
+-> 핵심 용어 추출
+-> 대상/준비물/제출 대상/기한 분리
+-> 템플릿 가능 문장은 템플릿 번역
+-> 일반 문장은 NLLB fallback
 ```
 
-승인된 후보만 사전에 병합합니다.
+### 미등록 용어 감지 루프
 
-```cmd
-python translation/import_approved_glossary_candidates.py --candidates outputs/translation/glossary_candidates_gemini.csv
+사전에 없는 용어는 `unknown_terms`로 남기고, 사람이 검수한 뒤 `term_glossary.csv`에 반영하는 흐름을 실험했습니다.
+
+![미등록 용어 자동 감지 루프](docs/assets/unknown-term-detection-loop.png)
+
+```text
+번역 실행
+-> 미등록 용어 감지
+-> unknown_terms 저장
+-> 관리자 검수
+-> glossary 반영
+-> 다음 번역 자동 보정
 ```
 
-## 번역 품질 확인
+Gemini API는 최종 번역기가 아니라, 미등록 용어의 대상 언어 초안 추천을 돕는 보조 도구로만 둡니다. 승인된 표현만 사전에 병합하는 구조입니다.
 
-20개 샘플 번역:
+### TTS 적용
 
-```cmd
-docker compose run --rm lab python translation/run_nllb_translate.py --input data/notice_sample_v3.csv --output outputs/translation/nllb_v3_glossary_20.csv --limit 20
-```
+최종 MVP 기준 TTS는 `translation/languages.py`의 Edge-TTS voice 매핑을 사용합니다.
 
-사전 기준 품질 체크:
-
-```cmd
-python translation/check_translation_quality.py --input outputs/translation/nllb_v3_glossary_20.csv --output outputs/translation/nllb_v3_glossary_20_checked.csv
-```
-
-## TTS 단독 실행
-
-번역 결과 CSV에서 베트남어 문장을 음성으로 변환합니다.
-
-```cmd
-docker compose run --rm lab python tts/run_mms_tts.py --input outputs/translation/nllb_v3_glossary_20.csv --text-column prediction_vi --output-dir outputs/tts/vie --limit 5
-```
-
-## 연결 포인트
-
-백엔드에서 가장 먼저 연결하기 좋은 파일은 `outputs/mvp/mvp_result.csv`입니다.
-
-주요 컬럼:
-
-| Column | 설명 |
+| 구분 | 설명 |
 | --- | --- |
-| `source_text` | 입력 원문 |
-| `category` | 분류 결과 |
-| `keywords` | 핵심 키워드 |
-| `easy_ko_text` | 쉬운 한국어 |
-| `vi_text` | 베트남어 번역 |
-| `glossary_hits` | 입력문에서 감지된 사전 용어 |
-| `quality_label` | 검수 상태 |
-| `quality_note` | 검수 사유 |
-| `tts_path` | 생성된 음성 파일 경로 |
+| 최종 MVP | Edge-TTS voice 매핑 기반 mp3 생성 |
+| 초기 실험 기록 | `tts/` 폴더의 MMS-TTS 코드 |
 
-API로 붙일 때는 같은 구조를 JSON으로 반환하면 됩니다.
+`tts/run_mms_tts.py`는 베트남어 MMS-TTS 모델을 검토했던 초기 실험 코드입니다. 삭제하지 않고 archive 성격의 실험 기록으로 보존합니다.
+
+## 파이프라인 구조
+
+```text
+가정통신문 원문
+-> 핵심 문장/정보 추출
+-> 쉬운 한국어 변환
+-> Slot Protection
+-> Glossary Injection 또는 Template-based Translation
+-> NLLB fallback
+-> Slot 복원 + 포매팅
+-> Glossary 검수
+-> Edge-TTS 음성 생성
+-> mvp_result.csv 통합
+```
+
+출력 경로는 아래 구조를 기준으로 정리합니다.
+
+```text
+outputs/mvp/{lang}/
+  01_input_notice.txt
+  02_baseline_result.json
+  03_easy_ko.txt
+  04_translation.txt
+  05_glossary_check.csv
+  06_tts_output.mp3
+  mvp_result.csv
+```
+
+주요 출력 파일:
+
+| File | 설명 |
+| --- | --- |
+| `01_input_notice.txt` | 입력 가정통신문 원문 |
+| `02_baseline_result.json` | 카테고리, 키워드, 사전 감지 결과 |
+| `03_easy_ko.txt` | 쉬운 한국어 문장 |
+| `04_translation.txt` | 대상 언어 번역 결과 |
+| `05_glossary_check.csv` | 학교 용어 검수 결과 |
+| `06_tts_output.mp3` | 대상 언어 음성 출력 |
+| `mvp_result.csv` | 전체 결과 통합 파일 |
+
+API 응답으로 연결할 때는 같은 구조를 JSON으로 반환할 수 있습니다.
 
 ```json
 {
@@ -232,37 +168,93 @@ API로 붙일 때는 같은 구조를 JSON으로 반환하면 됩니다.
   "glossary_hits": ["도화지->giấy vẽ"],
   "quality_label": "review_needed",
   "quality_note": "도화지->giấy vẽ",
-  "tts_path": "outputs/mvp/06_tts_output.wav"
+  "tts_path": "outputs/mvp/vi/06_tts_output.mp3"
 }
 ```
 
-## 문서
+## 실행 방법
 
-전체 방향과 최종 발표 근거는 아래 문서에 정리했습니다.
+기술 스택:
 
-```text
-docs/final-presentation-retrospective-2026-05-13.md
-docs/mvp_briefing.md
-docs/presentation-evidence.md
-docs/slot_protected_translation.md
-docs/template_translation_controlled_experiment_20260506.md
+| 영역 | 사용 기술 |
+| --- | --- |
+| 실행 환경 | Python 3.11, Docker, Docker Compose |
+| 번역 모델 | Hugging Face Transformers, `facebook/nllb-200-distilled-600M` |
+| 최종 MVP TTS | Edge-TTS voice 매핑 |
+| 초기 TTS 실험 | MMS-TTS (`facebook/mms-tts-vie`) |
+| 딥러닝 런타임 | PyTorch |
+| 데이터 처리 | CSV, JSON, Python 표준 라이브러리 |
+| 용어 사전 | `translation/term_glossary.csv` |
+| 검수 루프 | `glossary_hits`, `quality_label`, `glossary_check.csv` |
+| 보조 API | Gemini API, 미등록 용어 번역 초안 추천용 |
+
+E2E MVP 파이프라인:
+
+```cmd
+python translation/run_mvp_pipeline.py --input data/notice_sample_v3.csv --row-id 1 --lang vi --output-dir outputs/mvp/vi
 ```
 
-핵심 메시지:
+TTS를 생략하고 빠르게 확인:
 
-> 일반 번역 모델을 그대로 쓰는 것이 아니라, 학교 안내문 문맥에서 중요한 용어를 사전 기반으로 감지하고 오역 가능성이 있는 문장을 검수 대상으로 분리합니다.
+```cmd
+python translation/run_mvp_pipeline.py --input data/notice_sample_v3.csv --row-id 1 --lang vi --output-dir outputs/mvp/vi --skip-tts
+```
 
-## 다음 작업
+미등록 용어 감지와 glossary 확장은 최종 MVP에서 사용할 운영 루프로 정리했습니다. 현재 레포에는 `translation/term_glossary.csv`, `translation/fill_glossary_all_langs.py`, `translation/validate_glossary_with_gemini.py` 등 사전 확장과 검증을 위한 실험 코드가 남아 있습니다.
 
-1. 발표자료 p18의 "미등록 용어 감지" 흐름도 텍스트 잘림 보정
-2. 최종 발표 지표와 실제 재현 스크립트 연결 정리
-3. 실제 가정통신문 샘플을 더 넣어 E2E 반복 실행
-4. 미등록 용어는 후보 추출 후 사전 확장
+## 실험 결과 재현
 
-## 현재 한계
+번역 품질과 glossary 효과를 확인하는 스크립트입니다.
 
-- NLLB 원본 번역은 학교 문맥 용어를 안정적으로 처리하지 못합니다.
+```cmd
+python translation\run_ab_compare.py --lang vi --device cpu
+python translation\run_ab_quality_eval.py --lang vi
+python translation\run_glossary_compare.py --lang vi en zh th ja ru ms mn
+python translation\run_quality_eval.py
+```
+
+최근 실험 요약:
+
+| 항목 | 결과 |
+| --- | ---: |
+| A/B 입력 단축 | `-30.1%` |
+| A/B 속도 향상 | `x1.84` |
+| A/B 품질 평가 | `A 45.8점 / B 50.1점` |
+| 용어사전 전/후 품질 평가 | `39.0점 -> 89.6점` |
+
+관련 산출물은 `outputs/`와 `docs/` 아래에 보존합니다. 오래된 비교 실험과 중간 산출물은 삭제하지 않고 초기 실험 기록으로 유지합니다.
+
+## 폴더 구조
+
+```text
+translation-tts-lab/
+  archive/              # 이전 실험 스냅샷과 보존 자료
+  data/                 # 가정통신문 샘플 CSV
+  docs/                 # 실험 결과, 발표 근거, 전략 문서
+  outputs/              # 번역/TTS/평가 산출물
+  tests/                # 검증 테스트
+  translation/          # NLLB 번역, glossary, slot/template 실험 코드
+  tts/                  # MMS-TTS 초기 실험 코드
+  README.md             # 포트폴리오용 요약 문서
+```
+
+## 문서 링크
+
+| 문서 | 내용 |
+| --- | --- |
+| `docs/final-presentation-retrospective-2026-05-13.md` | 최종 발표 이후 번역/TTS 파트 성과와 피드백 |
+| `docs/presentation-evidence.md` | 발표에서 사용한 근거와 실패 사례 |
+| `docs/slot_protected_translation.md` | 날짜/시간/금액/URL/전화번호 보호 번역 설계 |
+| `docs/template_translation_controlled_experiment_20260506.md` | 템플릿 번역 실험과 비교 결과 |
+| `docs/translation-model-strategy-2026-05-07.md` | NLLB 유지, SMaLL-100 비교, 최종 번역 전략 |
+| `docs/nllb_vs_small100_result.md` | NLLB와 SMaLL-100 비교 실험 |
+| `docs/mvp_briefing.md` | MVP 파이프라인 브리핑 |
+| `개발일지_모세종.md` | 개인 작업 로그 |
+
+## 한계와 개선 방향
+
+- NLLB 원본 번역은 학교 문맥 용어를 안정적으로 처리하지 못하므로, glossary와 template 보정이 계속 필요합니다.
 - 사전 검수는 문자열 포함 여부 기반이라 표현 변형을 완벽히 잡지는 못합니다.
-- `term_glossary.csv`는 사람이 계속 확장해야 합니다.
-- TTS 품질은 입력 번역문의 품질에 크게 의존합니다.
-- 현재 데모는 베트남어 중심이며, 다국어 확장을 위해 언어별 사전과 음성 모델 검증이 필요합니다.
+- `term_glossary.csv`는 새로운 학교 안내문을 볼수록 사람이 검수하며 확장해야 합니다.
+- 현재 실험은 베트남어 중심으로 검증했으며, 8개 언어 확장을 위해 언어별 사전과 TTS 품질 검증이 더 필요합니다.
+- 최종 MVP는 Edge-TTS 기준으로 정리했지만, `tts/`의 MMS-TTS 코드는 초기 실험 기록으로 남아 있습니다.
